@@ -1,4 +1,9 @@
-class Solution {
+package test.app.array;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class LeetCode1539 {
     public int findKthPositive(int[] arr, int k) {
         List<Integer> missing  = new ArrayList<>();
         int st;

@@ -1,3 +1,5 @@
+package test.app.dp;
+
 class LongestCommonSubSequence {
 
 public static int lcs_length(String a, String b, int i, int j){

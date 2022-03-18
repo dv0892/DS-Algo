@@ -1,4 +1,6 @@
-class Solution {
+package test.app.string;
+
+class LeetCode1111 {
     public int[] maxDepthAfterSplit(String seq) {
         int[] res = new int[seq.length()];
         int depth_A = 0, depth_B = 0;

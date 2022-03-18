@@ -1,4 +1,6 @@
-class Solution {
+package test.app.array;
+
+class LeetCode1588 {
     public int sumOddLengthSubarrays(int[] arr) {
         
         int sum=0;

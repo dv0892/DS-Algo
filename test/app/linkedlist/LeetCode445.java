@@ -1,4 +1,4 @@
-package test.app.linkedList;
+package test.app.linkedlist;
 
 
 // Definition for singly-linked list.

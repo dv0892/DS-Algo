@@ -1,4 +1,6 @@
-class Solution {
+package test.app.array;
+
+class LeetCode1313 {
     public int[] decompressRLElist(int[] nums) {
         
         int outSize = 0;

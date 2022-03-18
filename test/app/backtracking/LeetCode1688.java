@@ -1,4 +1,6 @@
-class Solution {
+package test.app.backtracking;
+
+class LeetCode1688 {
     public int numberOfMatches(int n) {
         if(n==2) return 1;
         if(n==1) return 0;

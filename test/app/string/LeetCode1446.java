@@ -1,4 +1,7 @@
-class Solution {
+package test.app.string;
+
+
+class LeetCode1446 {
     public int maxPower(String s) {
         char[] input = s.toCharArray();
         int max_cCh=1,cCh = 1;

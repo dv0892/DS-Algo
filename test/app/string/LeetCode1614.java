@@ -1,4 +1,7 @@
-class Solution {
+package test.app.string;
+
+
+class LeetCode1614 {
     public int maxDepth(String s) {
         int at_depth=0,max_depth=0;
         for(char el : s.toCharArray()){

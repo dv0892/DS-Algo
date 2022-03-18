@@ -1,3 +1,5 @@
+package test.app.array;
+
 class LeetCode1486 {
     public int xorOperation(int n, int start) {
         int no = start,i=1;

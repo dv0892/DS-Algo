@@ -1,4 +1,6 @@
-class Solution {
+package test.app.math;
+
+class LeetCode1281 {
     public int subtractProductAndSum(int n) {
         int p_n=1,s_n=0,digit;
         while(n>0){

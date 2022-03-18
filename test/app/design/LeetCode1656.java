@@ -1,3 +1,8 @@
+package test.app.design;
+
+import java.util.ArrayList;
+import java.util.List;
+
 class OrderedStream {
 
     String[] arr;
