@@ -1,7 +1,8 @@
 package test.app.sorts;
 
 import java.util.Arrays;
-import test.app.Utils;
+
+import test.app.utils.Utils;
 
 public class Sorts {
 

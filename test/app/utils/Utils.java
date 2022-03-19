@@ -1,4 +1,4 @@
-package test.app;
+package test.app.utils;
 
 public class Utils {
 
