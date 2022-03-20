@@ -142,6 +142,9 @@ public class Sorts {
 		 *  For n = 10, h will be 1,4
 		 *  n = 20, h will be 1,4,13 
 		 *  
+		 *  First will perform insertion sort on 13 interval,
+		 *  then 4-interval and 1-interval.
+		 *  
 		 *  Sorts will be performed in the reverse order.
 		 */
 		
