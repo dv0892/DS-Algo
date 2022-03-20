@@ -19,6 +19,13 @@ public class Sorts {
 	}
 	
 	public static void bubbleSort(int[] a) {
+		
+		/*
+		 * Worst Case : O(n^2)
+		 * 
+		 * Stable Sort : NO
+		 */
+		
 		int n = a.length;
 		for( int i = 0; i < (n-1); i++) {
 			/*
@@ -41,8 +48,14 @@ public class Sorts {
 	}
 	
 	public static void selectionSort(int[] a) {
-		int n = a.length;
+
+		/*
+		 * Worst Case : O(n^2)
+		 * 
+		 * Stable Sort : NO
+		 */
 		
+		int n = a.length;
 		/*
 		 * In selection sort, we can follow two strategies :
 		 * 1. Pick the largest element and place it at the end
@@ -73,6 +86,14 @@ public class Sorts {
 	}
 
 	public static void insertionSort(int[] a) {
+		
+		/*
+		 * Worst Case : O(n^2)
+		 * 
+		 * Stable Sort : YES
+		 * 
+		 */
+		
 		int n = a.length;
 		for( int i = 1; i < (n); i++) {
 			/*
@@ -94,6 +115,16 @@ public class Sorts {
 	}
 	
 	public static void shellSort(int[] a) {
+		
+		/*
+		 * Worst Case : falls somewhere near O( n^(3/2) ) 
+		 * but it is never O(n^2).
+		 * 
+		 * Stable Sort : NO
+		 * 
+		 * 
+		 */
+		
 		int n = a.length;
 		/* 
 		* Most important step is determining the interval to 
