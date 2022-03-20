@@ -8,11 +8,12 @@ public class Sorts {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] arr = {4,2,6,6,1,9};
+		int[] arr = {9,8,7,6,5,4,3,2,1,-1};
 		
 		//bubbleSort(arr);
 		//selectionSort(arr);
-		insertionSort(arr);
+		//insertionSort(arr);
+		//shellSort(arr);
 		
 		System.out.println(Arrays.toString(arr));
 	}
@@ -90,5 +91,45 @@ public class Sorts {
 			}
 			a[j+1] = pivotEl;
 		} 
+	}
+	
+	public static void shellSort(int[] a) {
+		int n = a.length;
+		/* 
+		* Most important step is determining the interval to 
+		* subsequent h-interval insertion sorts. 
+		*/
+		int h = 1;
+		
+		while(h < n/3) h = 3*h + 1;
+		
+		/*
+		 *  There are many techniques to compute h.
+		 *  Above is just one of many.
+		 * 
+		 *  'h' has been computed
+		 *  For n = 10, h will be 1,4
+		 *  n = 20, h will be 1,4,13 
+		 *  
+		 *  Sorts will be performed in the reverse order.
+		 */
+		
+		while(h >= 1) {
+			/*
+			* h- interval based sorting
+			* This is just a generic version of insertion sort
+			* based on h.
+			*/
+			for(int i = h; i < n; i++) {
+				 int pivotEl = a[i];
+				 int j = i-h;
+				 while(j >= 0 && pivotEl < a[j]) {  
+						a[j+h] =  a[j];
+						j -= h;
+				 }
+				 a[j+h] = pivotEl;
+			}	
+			h /= 3;
+		}
 	}
 }
