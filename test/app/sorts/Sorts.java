@@ -11,7 +11,8 @@ public class Sorts {
 		int[] arr = {4,2,6,6,1,9};
 		
 		//bubbleSort(arr);
-		selectionSort(arr);
+		//selectionSort(arr);
+		insertionSort(arr);
 		
 		System.out.println(Arrays.toString(arr));
 	}
@@ -45,6 +46,8 @@ public class Sorts {
 		 * In selection sort, we can follow two strategies :
 		 * 1. Pick the largest element and place it at the end
 		 * 2. Or Pick the smallest element and place it at the start.
+		 * 
+		 * and keep on doing this for rest of the elements.
 		 */
 		
 		// Implementation for Point 1
@@ -68,4 +71,24 @@ public class Sorts {
 		}
 	}
 
+	public static void insertionSort(int[] a) {
+		int n = a.length;
+		for( int i = 1; i < (n); i++) {
+			/*
+			 * This sort assumes one part is sorted 
+			 * and other is unsorted. Starts picking element from unsorted part
+			 * and puts them in sorted part at its correct position 
+			 * one by one.
+			 */
+			
+			int pivotEl = a[i];
+			int j = i-1;
+			while(j >= 0 && pivotEl < a[j]) {  
+				a[j+1] =  a[j];
+				j--;
+				
+			}
+			a[j+1] = pivotEl;
+		} 
+	}
 }
