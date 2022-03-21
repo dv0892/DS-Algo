@@ -1,6 +1,7 @@
 package test.app.sorts;
 
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 import test.app.utils.Utils;
 
@@ -8,14 +9,27 @@ public class Sorts {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] arr = {9,8,7,6,5,4,3,2,1,-1};
+	
+		/*int[] arr = new int[1000];
+		for(int i=0; i<arr.length; i++) {
+    		arr[i] =  ThreadLocalRandom.current().nextInt(1000);;
+    	}*/
 		
+		int[] arr = {3,1,4,5,2};
+		
+		//System.out.println("Array Sorted "+ " : "+ isSorted(arr) + " : "+ Arrays.toString(arr));
+		
+		long st  = System.currentTimeMillis();
 		//bubbleSort(arr);
 		//selectionSort(arr);
 		//insertionSort(arr);
 		//shellSort(arr);
+		//mergeSort(arr, 0, arr.length-1);
+		quickSort(arr,0,arr.length-1);
 		
-		System.out.println(Arrays.toString(arr));
+		long ed  = System.currentTimeMillis();
+		
+		System.out.println("Array Sorted "+ " : "+ isSorted(arr) + " : "+ /*(ed-st)/1000*/  Arrays.toString(arr));
 	}
 	
 	public static void bubbleSort(int[] a) {
@@ -166,4 +180,91 @@ public class Sorts {
 			h /= 3;
 		}
 	}
+
+    public static void mergeSort(int[] a, int s, int e) {
+    	
+    	/*
+    	 * if array is of size 1 , this means it is already sorted.
+    	 * This is where we stop going further down in the recursion tree.
+    	 * And the merge the two - sorted arrays each of size 1 by 
+    	 * calling @combine function
+    	 */
+    	
+    	if(s >= e )
+    		return ;
+    	
+    	int mid = s + (e-s)/2;
+    	mergeSort(a,s,mid);
+    	mergeSort(a,mid+1,e);
+    	
+    	combine(a,s,mid,e);
+    }
+
+	private static void combine(int[] a, int s, int mid, int e) {
+	
+		int[] left = Arrays.copyOfRange(a, s,mid+1);
+		int[] right = Arrays.copyOfRange(a, mid+1,e+1);
+		
+		int i=0,j=0,k=s;
+		for( ; i<left.length && j<right.length;) {
+			if(left[i] <= right[j])
+				a[s++] = left[i++];
+			else 
+				a[s++] = right[j++];
+		}
+		
+		
+	    while( i<left.length ) {
+	    	a[s++] = left[i++];
+	    }
+	    
+	    while( j<right.length ) {
+	    	a[s++] = right[j++];
+	    }
+	}
+    
+    public static boolean isSorted(int[] a) {
+    	int prev = a[0];
+    	for(int i=1; i<a.length; i++) {
+    		if(!(a[i] >= prev))
+    			return false;
+    	}
+    	
+    	return true;
+    }
+
+    static void quickSort(int[] nums, int low, int hi) {
+        if (low >= hi) {
+            return;
+        }
+
+        int s = low;
+        int e = hi;
+        int m = s + (e - s) / 2;
+        int pivot = nums[e];
+
+        while (s <= e) {
+
+            // also a reason why if its already sorted it will not swap
+            while (nums[s] < pivot) {
+                s++;
+            }
+            while (nums[e] > pivot) {
+                e--;
+            }
+
+            if (s <= e) {
+                int temp = nums[s];
+                nums[s] = nums[e];
+                nums[e] = temp;
+                s++;
+                e--;
+            }
+        }
+
+        System.out.println(Arrays.toString(nums));
+        // now my pivot is at correct index, please sort two halves now
+        quickSort(nums, low, e);
+        quickSort(nums, s, hi);
+    }
 }
