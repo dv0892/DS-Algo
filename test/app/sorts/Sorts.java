@@ -10,22 +10,22 @@ public class Sorts {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
-		int[] arr = new int[1000];
+		int[] arr = new int[1000000];
 		for(int i=0; i<arr.length; i++) {
-    		arr[i] =  ThreadLocalRandom.current().nextInt(1000);;
+    		arr[i] =  ThreadLocalRandom.current().nextInt(1000000);;
     	}
 		
-		//int[] arr = {3,1,4,5,2};
+		//int[] arr = {3,1,2,2,2,2,5};
 		
 		//System.out.println("Array Sorted "+ " : "+ isSorted(arr) + " : "+ Arrays.toString(arr));
 		
 		long st  = System.currentTimeMillis();
-		bubbleSort(arr);
+		//bubbleSort(arr);
 		//selectionSort(arr);
 		//insertionSort(arr);
 		//shellSort(arr);
 		//mergeSort(arr, 0, arr.length-1);
-		//quickSort(arr,0,arr.length-1);
+		quickSort(arr,0,arr.length-1);
 		
 		long ed  = System.currentTimeMillis();
 		
@@ -238,12 +238,14 @@ public class Sorts {
             return;
         }
 
-        int pivotIndex = quickPartition(nums, low, hi);
+        //int pivotIndex = quickPartition(nums, low, hi);
+        
+        Pair pair = quickPartition_faster(nums, low, hi);
 
         //System.out.println(Arrays.toString(nums));
         // now my pivot is at correct index, please sort two halves now
-        quickSort(nums, low, pivotIndex -1);
-        quickSort(nums, pivotIndex+1,hi );
+        quickSort(nums, low, pair.i);
+        quickSort(nums, pair.j,  hi );
     }
     
     public static int  quickPartition(int[] a, int l, int r) {
@@ -270,5 +272,55 @@ public class Sorts {
     	return i+1;
     	
     	
+    }
+    
+    public static Pair  quickPartition_faster(int[] a, int l, int r) {
+    	// This partition algo can further optimized to cover 
+    	// the case where we have multiple elements that are equal to
+    	// pivot. They all can clubbed together to make
+    	// three sections in array
+    	//   elements less than pivot , elements equal to pivot, elements greater than pivot
+    	//   Then further quick sort needs to be run only on 1st and 3rd section
+    	
+    	int pivot = a[r];
+    	int k = l,i,j;
+    	i = j = l-1;
+    	
+    	while(k <= r) {
+    		if(a[k] < pivot) {
+    			if(j > i) {
+    			  //Since we are maitiaing two regions,
+    			  // so we have to do two swaps.
+    			  int t = a[k];
+    			  Utils.swap(a, ++j, k);
+    			  Utils.swap(a, ++i, j);
+    			  a[i] = t;
+    			} else
+    				Utils.swap(a, ++i, k);
+    		} else if(a[k] == pivot) {
+    			if(j < i) {
+    				// This case covers when we have found smaller elements already but this is
+    				// the first equal(to pivot) element found.
+    				Utils.swap(a, i+1, k);
+    				j = i+1;
+    			} else
+    				Utils.swap(a, ++j, k);
+    			
+    		}
+    		
+    		k++;
+    	}
+    	
+    	return new Pair(i,j+1);
+    	
+    	
+    }
+    
+    static class Pair{
+    	int i,j;
+    	Pair(int i,int j){
+    		this.i= i;
+    		this.j= j;
+    	}
     }
 }
