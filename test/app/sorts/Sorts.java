@@ -10,22 +10,22 @@ public class Sorts {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
-		/*int[] arr = new int[1000];
+		int[] arr = new int[1000];
 		for(int i=0; i<arr.length; i++) {
     		arr[i] =  ThreadLocalRandom.current().nextInt(1000);;
-    	}*/
+    	}
 		
-		int[] arr = {3,1,4,5,2};
+		//int[] arr = {3,1,4,5,2};
 		
 		//System.out.println("Array Sorted "+ " : "+ isSorted(arr) + " : "+ Arrays.toString(arr));
 		
 		long st  = System.currentTimeMillis();
-		//bubbleSort(arr);
+		bubbleSort(arr);
 		//selectionSort(arr);
 		//insertionSort(arr);
 		//shellSort(arr);
 		//mergeSort(arr, 0, arr.length-1);
-		quickSort(arr,0,arr.length-1);
+		//quickSort(arr,0,arr.length-1);
 		
 		long ed  = System.currentTimeMillis();
 		
@@ -238,33 +238,37 @@ public class Sorts {
             return;
         }
 
-        int s = low;
-        int e = hi;
-        int m = s + (e - s) / 2;
-        int pivot = nums[e];
+        int pivotIndex = quickPartition(nums, low, hi);
 
-        while (s <= e) {
-
-            // also a reason why if its already sorted it will not swap
-            while (nums[s] < pivot) {
-                s++;
-            }
-            while (nums[e] > pivot) {
-                e--;
-            }
-
-            if (s <= e) {
-                int temp = nums[s];
-                nums[s] = nums[e];
-                nums[e] = temp;
-                s++;
-                e--;
-            }
-        }
-
-        System.out.println(Arrays.toString(nums));
+        //System.out.println(Arrays.toString(nums));
         // now my pivot is at correct index, please sort two halves now
-        quickSort(nums, low, e);
-        quickSort(nums, s, hi);
+        quickSort(nums, low, pivotIndex -1);
+        quickSort(nums, pivotIndex+1,hi );
+    }
+    
+    public static int  quickPartition(int[] a, int l, int r) {
+    	// This partition algo can further optimized to cover 
+    	// the case where we have multiple elements that are equal to
+    	// pivot. They all can clubbed together to make
+    	// three sections in array
+    	//   elements less than pivot , elements equal to pivot, elements greater than pivot
+    	//   Then further quick sort needs to be run only on 1st and 3rd section
+    	
+    	int pivot = a[r];
+    	int j = l;
+    	int i = l-1;
+    	
+    	while(j < r) {
+    		if(a[j] <= pivot)
+    			Utils.swap(a, ++i, j);
+    		
+    		j++;
+    	}
+    	
+    	Utils.swap(a, j, i+1);
+    	
+    	return i+1;
+    	
+    	
     }
 }
