@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 import test.app.utils.Utils;
+import test.app.utils.Utils.Pair;
 
 public class Sorts {
 
@@ -311,16 +312,10 @@ public class Sorts {
     		k++;
     	}
     	
-    	return new Pair(i,j+1);
+    	return new Utils.Pair(i,j+1);
     	
     	
     }
     
-    static class Pair{
-    	int i,j;
-    	Pair(int i,int j){
-    		this.i= i;
-    		this.j= j;
-    	}
-    }
+    
 }
