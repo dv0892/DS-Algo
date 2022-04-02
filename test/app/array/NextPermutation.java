@@ -13,18 +13,30 @@ public class NextPermutation {
 
 	public void nextPermutation(int[] nums) {
         
-		 int i , j ;
+			int i , j ;
 	        i = j = 0;
-	        
-	        outerloop:
-	        for( i = nums.length - 2 ; i >= 0;  i--){
-	            for( j = nums.length - 1 ; j > i ; j--){
-	                if( nums[i] < nums[j] )    {
-	                    Utils.swap(nums,i,j);
-	                    break outerloop;
-	                }   
-	            }
+	    
+	        for( i = nums.length - 2 ; i >= 0;  i-- ){
+	        	 if( nums[i] < nums[i+1] )    {
+	                    break ;
+	                } 
 	        }
+	        
+	        if(i<0) {
+	        	 for( i=0; i < nums.length/2 ; i++){
+	        		 Utils.swap(nums ,i ,nums.length-1-i );
+	 	         }
+	        	 return;
+	        }
+	        
+	        for( j = nums.length - 1 ; j > i;  j-- ){
+	        	 if( nums[j] > nums[i] )    {
+	                    break ;
+	                } 
+	        }
+	        
+	        Utils.swap(nums,i,j);
+	        
 	       
 	        i++; j=0;
 	        int len  = ( i + ( (nums.length - 1 - i + 1) )/2) ;
