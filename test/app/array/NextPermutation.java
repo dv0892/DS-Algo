@@ -22,7 +22,7 @@ public class NextPermutation {
 	                    break ;
 	        }
 	        
-	        //Swap it with first number greater than it 
+	        //Swap it with first number greater than it (the greater number must be found from the backwards)
 	        if (i >= 0) {
 		        for( j = nums.length - 1 ; j > i;  j-- ){
 		        	 if( nums[j] > nums[i] )    {
@@ -34,6 +34,7 @@ public class NextPermutation {
 	        }
 	        
 	        //Just reverse the remaining array they are already in non-increasing order
+	        
 	        i++; j=0;
 	        int len  = ( i + ( (nums.length - 1 - i + 1) )/2) ;
 	        for( ; i < len ; i++){
