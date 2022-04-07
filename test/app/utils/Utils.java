@@ -10,6 +10,12 @@ public class Utils {
         arr[i]=arr[j];
         arr[j]=t;
     }
+	
+	public static void swap(char[] arr, int i, int j){
+        char t = arr[i];
+        arr[i]=arr[j];
+        arr[j]=t;
+    }
 
 	public static Pair findTwoLargest(ArrayList<Integer> a, int j) {
 		// TODO Auto-generated method stub
