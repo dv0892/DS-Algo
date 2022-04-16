@@ -4,7 +4,7 @@ public class IsSubSequence {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(new IsSubSequence().isSubsequence("bcd", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcd"));
+		System.out.println(new IsSubSequence().isSubsequence("X", "ahbbgcd",8));
 	}
 	
 	public boolean isSubsequence(String s, String t) {
@@ -45,4 +45,20 @@ public class IsSubSequence {
         
     }
 
+	
+	public boolean isSubsequence(String s, String t,int x) {
+        int ptr1 = 0;
+        int ptr2 = 0;
+        
+        while(ptr1 < s.length() && ptr2 < t.length()){
+            if(s.charAt(ptr1) != t.charAt(ptr2)){
+                ptr2++;
+            }else{
+                ptr1++;
+                ptr2++;
+            }
+        }
+        
+        return ptr1 == s.length() && ptr2 <= t.length();
+    }
 }
