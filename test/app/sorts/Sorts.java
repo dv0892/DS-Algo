@@ -11,9 +11,9 @@ public class Sorts {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
-		int[] arr = new int[1000000];
+		int[] arr = new int[10000];
 		for(int i=0; i<arr.length; i++) {
-    		arr[i] =  ThreadLocalRandom.current().nextInt(1000000);;
+    		arr[i] =  ThreadLocalRandom.current().nextInt(10000);;
     	}
 		
 		//int[] arr = {3,1,2,2,2,2,5};
@@ -241,7 +241,7 @@ public class Sorts {
 
         //int pivotIndex = quickPartition(nums, low, hi);
         
-        Pair pair = quickPartition_faster(nums, low, hi);
+        Pair pair = quickPartition_faster_cleaner_randomized(nums, low, hi);
 
         //System.out.println(Arrays.toString(nums));
         // now my pivot is at correct index, please sort two halves now
@@ -275,6 +275,29 @@ public class Sorts {
     	
     }
     
+    
+    public static Pair  quickPartition_faster_cleaner_randomized(int[] a, int l, int r) {
+    	
+    	int i = l-1; 
+    	int j = l;
+    	int k = r+1;
+    	
+    	int pIndex = ThreadLocalRandom.current().nextInt(l,r+1);
+    	int pivot = a[pIndex];
+    	
+    	
+    	while (j < k) {
+    		if(a[j] == pivot) {
+    			j++;
+    		} else if (a[j] < pivot)
+    			Utils.swap(a, ++i, j++);
+    		else
+    			Utils.swap(a, --k, j);
+    	}
+    	
+    	return new Pair(i,k);
+    }
+    
     public static Pair  quickPartition_faster(int[] a, int l, int r) {
     	// This partition algo can further optimized to cover 
     	// the case where we have multiple elements that are equal to
@@ -282,6 +305,9 @@ public class Sorts {
     	// three sections in array
     	//   elements less than pivot , elements equal to pivot, elements greater than pivot
     	//   Then further quick sort needs to be run only on 1st and 3rd section
+    	// 
+    	// As we can see this algo is doing lot of swaps so can we write it clean and efficient way.
+    	
     	
     	int pivot = a[r];
     	int k = l,i,j;
