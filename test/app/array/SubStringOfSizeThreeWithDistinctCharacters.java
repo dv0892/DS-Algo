@@ -9,10 +9,20 @@ public class SubStringOfSizeThreeWithDistinctCharacters {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println( new SubStringOfSizeThreeWithDistinctCharacters().countGoodSubstrings("aababcabc",3));
+		System.out.println( new SubStringOfSizeThreeWithDistinctCharacters().countGoodSubstrings("icolgrjedehnd",3));
 	}
 	
 	public int countGoodSubstrings(String s,int k ) {
+		
+		
+        
+        /*for(int i=0;i<s.length()-2;i++){
+            if(     s.charAt(i)  !=s.charAt(i+1)
+                 && s.charAt(i+1)!=s.charAt(i+2)
+                 && s.charAt(i)  !=s.charAt(i+2)
+              )
+                res++;
+        }*/
 		
 		/*
 		 * This solution is quite naive.
@@ -25,16 +35,6 @@ public class SubStringOfSizeThreeWithDistinctCharacters {
 		 */
 		
         int res = 0;
-        
-        /*for(int i=0;i<s.length()-2;i++){
-            if(     s.charAt(i)  !=s.charAt(i+1)
-                 && s.charAt(i+1)!=s.charAt(i+2)
-                 && s.charAt(i)  !=s.charAt(i+2)
-              )
-                res++;
-        }*/
-        
-        Set<Integer> set = new HashSet<>();
         Map<Character,Integer> map = new HashMap<>();
         
         int i=0;
@@ -49,7 +49,7 @@ public class SubStringOfSizeThreeWithDistinctCharacters {
         // At index i, the substring being considered will range from i-k to i.
         for( ; i<s.length() ; i++) {
         	
-        	map.computeIfPresent(s.charAt(i-k), (key,v)-> v==1 ? null : v-- );
+        	map.computeIfPresent(s.charAt(i-k), (key,v)-> v==1 ? null : --v );
         	map.merge(s.charAt(i), 1, (v1,v2)-> v1+v2);
         	
         	res += (map.size() == k ? 1 : 0);
