@@ -11,9 +11,9 @@ public class Sorts {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
-		int[] arr = new int[10000];
+		int[] arr = new int[1000000];
 		for(int i=0; i<arr.length; i++) {
-    		arr[i] =  ThreadLocalRandom.current().nextInt(10000);;
+    		arr[i] =  ThreadLocalRandom.current().nextInt(1000000);;
     	}
 		
 		//int[] arr = {3,1,2,2,2,2,5};
@@ -30,7 +30,7 @@ public class Sorts {
 		
 		long ed  = System.currentTimeMillis();
 		
-		System.out.println("Array Sorted "+ " : "+ isSorted(arr) + " : "+ /*(ed-st)/1000*/  Arrays.toString(arr));
+		System.out.println("Array Sorted "+ " : "+ isSorted(arr) + " : "+ (ed-st)/1000   /* + Arrays.toString(arr)*/);
 	}
 	
 	public static void bubbleSort(int[] a) {
