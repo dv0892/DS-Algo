@@ -15,10 +15,9 @@ public class KthSmallest {
     		arr[i] =  ThreadLocalRandom.current().nextInt(100);;
     	}
 		
-		System.out.println(Arrays.toString(arr));
 		
 		/*
-		Here we have taken the task of  finding the
+		Here we have taken the task of  finding the kth Smallest in array
 		and even randomized k also.
 		The k will lie in the range of indices of length of array
 		*/
@@ -28,42 +27,37 @@ public class KthSmallest {
 		System.out.println(new KthSmallest().kthSmallest(arr, 0, arr.length-1, k-1));
 	}
 	
-	public int kthSmallest(int[] arr, int  p, int q, int i) {
+	public int kthSmallest(int[] arr, int  p, int q, int k) {
 		
-		if(p == q)
-			return arr[p];
-		
-		/*
-		 * 
-		 * 
-		 * This algo can be further optimized to contain
-		 * the case when there are duplicate elements
-		 * and our i lies in that range
-		 * 
-		 * int  k = parition(arr,p,q);
+		  
+		 /* This algo can be further optimized to contain
+		  the case when there are duplicate elements
+		  and our i lies in that range
+		  
+		  int  pivot = parition(arr,p,q);
 
-		if( k == i )
+		if( pivot == k )
 			return arr[k];
 
-		if( i < k )
-			return kthSmallest(arr, p, k-1, i );
+		if( k < pivot )
+			return kthSmallest(arr, p, pivot-1, k );
 		else
-			return kthSmallest(arr, k+1, q, i );*/
+			return kthSmallest(arr, pivot+1, q, k );*/
 		
 		
-		/*
-		 * This is a classic application of partition routine of
-		 * quick sort.
-		 */
+		
+		/*  This is a classic application of partition routine of
+		  quick sort.*/
+		 
 		Pair  pair = quickPartition_faster_randomized(arr,p,q);
 		
-		if( (i >= pair.i+1) && ( i <= (pair.j-1)) )
-			return arr[pair.i + (i-pair.i)];
+		if( (k >= pair.i+1) && ( k <= (pair.j-1)) )
+			return arr[pair.i + (k-pair.i)];
 		
-		if( i <= pair.i )
-			return kthSmallest(arr, p, pair.i, i );
+		if( k <= pair.i )
+			return kthSmallest(arr, p, pair.i, k );
 		else
-			return kthSmallest(arr, pair.j, q, i );
+			return kthSmallest(arr, pair.j, q, k );
 		
 	}
 	
