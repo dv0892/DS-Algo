@@ -10,57 +10,53 @@ public class KthSmallest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		/*int[] arr = new int[10];
+		int[] arr = new int[100];
 		for(int i=0; i<arr.length; i++) {
-    		arr[i] =  ThreadLocalRandom.current().nextInt(10);;
-    	}*/
+    		arr[i] =  ThreadLocalRandom.current().nextInt(100);;
+    	}
 		
-		int[] arr = {0, 0, 4, 4, 5, 5, 6, 9, 9, 9};
 		System.out.println( Arrays.toString(arr) );
 		Arrays.sort(arr);
 		System.out.println( Arrays.toString(arr) );
-		
-		System.out.println(new KthSmallest().kthSmallest(arr, 0, arr.length-1, 4));
+		int k = 9;
+		System.out.println(new KthSmallest().kthSmallest(arr, 0, arr.length-1, k-1));
 	}
 	
-	public int kthSmallest(int[] arr, int  p, int q, int k) {
+	public int kthSmallest(int[] arr, int  p, int q, int i) {
 		
 		if(p == q)
 			return arr[p];
 		
-		Pair pair = parition_randomized(arr,p,q);
+		int  k = parition(arr,p,q);
 		
-		if( k > pair.i && k < pair.j)
+		if( k == i )
 			return arr[k];
 		
-		if(k < pair.i)
-			return kthSmallest(arr, p, pair.i, k);
+		if( i < k )
+			return kthSmallest(arr, p, k-1, i );
 		else
-			return kthSmallest(arr, pair.j, q, k - pair.j);
+			return kthSmallest(arr, k+1, q, k-i );
 		
 	}
 	
-	public Pair parition_randomized(int[] arr, int p, int q) {
+	public int parition(int[] arr, int p, int q) {
 		
-		int i,j,k;
-		i=p-1;
-		j=p;
-		k=q+1;
+		int i=p-1;
+		int j=p;
 		
-		int pivotIndex = ThreadLocalRandom.current().nextInt(p, q+1);
-		int pivot = arr[pivotIndex];
+		//int pivotIndex = ThreadLocalRandom.current().nextInt(p, q+1);
+		int pivot = arr[q];
 		
-		while( j < k) {
-			if(arr[j] == pivot) {
-				j++;
-			} else if(arr[j] < pivot) {
-				Utils.swap(arr, ++i, j++);
-			} else {
-				Utils.swap(arr, --k, j);
-			}
+		while( j < q) {
+			if(arr[j] < pivot) {
+				Utils.swap(arr, ++i, j);
+			} 
+			j++;
 		}
 		
-		return new Pair(i,k);
+		Utils.swap(arr, ++i, j);
+		
+		return i;
 	}
 
 }
