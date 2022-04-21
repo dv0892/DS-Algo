@@ -19,7 +19,14 @@ public class LongestNiceSubString {
 	 int n = s.length();
 	 int st=0,end = 0;
 	 
-     for(int w = 2 ; w <= n; w++) {
+	 /*
+	  *  Here we are checking in descending size of 
+	  *  windows .
+	  *  if answer is not found then and only then we will
+	  *  check in smaller windows.
+	  */
+	 
+     for(int w = n ; w >= 2; w--) {
     	 int[][] map = new int[2][26];
     	 //pre-processing for window of size w
     	 for(int i=0;i<w;i++) {
@@ -47,7 +54,7 @@ public class LongestNiceSubString {
     		 if(nice == true) {
     			 st = j;
     			 end = j+w;
-    			 break;
+    			 return s.substring(st,end);
     		 }
     	 }
      }
