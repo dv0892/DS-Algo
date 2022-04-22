@@ -24,6 +24,8 @@ public int maxProfit(int[] prices) {
 	 * a new min we will start caculating the profits again.
 	 * In this way we can ensure max are always after min.
 	 * 
+	 * A more simplified version of this problem can seen @ LeetCode 2016
+	 * 
 	 */
 	int maxProfit = 0;
     
