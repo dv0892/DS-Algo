@@ -7,7 +7,7 @@ public class FactorialLargeNumber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		factorial(ThreadLocalRandom.current().nextInt(100));
+		factorial(ThreadLocalRandom.current().nextInt(10));
 	}
 	
 	public static void factorial(int N) {
@@ -26,7 +26,7 @@ public class FactorialLargeNumber {
 			resSize = multiply(f,res,resSize);
 		}
 		
-		System.out.print(N + " : "+ Arrays.toString(res));
+		System.out.print(N + " : res : " + resSize +" " + Arrays.toString(res));
 	}
 
 	private static int multiply(int f, int[] res, int resSize) {
