@@ -11,29 +11,30 @@ public class ContainsDuplicateII {
 	}
 
 	
-	public boolean containsNearbyDuplicate(int[] nums, int k) {
-        
-        Set<Integer> set = new HashSet<>();
-        
-        
-        int i=0;
-        for( ;i<nums.length && i<=k; i++){
-            set.add(nums[i]);
-        }
-        
-        if(set.size()>1 && set.size() < (k+1))
-            return true;
-        
-        for( ; i<nums.length ; i++){
-            set.remove(nums[i-k-1]);
-            set.add(nums[i]);
-                
-            if(set.size()>1 && set.size() < (k+1))
-                return true;
-        }
-        
-        return false;
-        
-    }
+	  public boolean containsNearbyDuplicate(int[] nums, int k) {
+	        
+	        Set<Integer> set = new HashSet<>();
+	        
+	        
+	        int i=0;
+	        k = k >= nums.length ? nums.length-1 : k;
+	        for( ;i<nums.length && i<=k; i++){
+	            set.add(nums[i]);
+	        }
+	        
+	        if( set.size() < (k+1) )
+	            return true;
+	        
+	        for( ; i<nums.length ; i++){
+	            set.remove(nums[i-k-1]);
+	            set.add(nums[i]);
+	                
+	            if( set.size() < (k+1) )
+	                return true;
+	        }
+	        
+	        return false;
+	        
+	    }
 	
 }
