@@ -8,11 +8,14 @@ public class MaximumSubArrayProblem {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
+		 int[] nums = {1,2,-1,-2,2,1,-2,1};
+		// int[] nums = {-2,1};
 		/*ArrayList<Integer> A =  new ArrayList<>(Arrays.asList(nums));
 		System.out.println(new MaximumSubArrayProblem().maxSubArray(A));*/
 		
-		System.out.println(Arrays.toString( new MaximumSubArrayProblem().maxSubArrayRes(nums)));
+		//System.out.println(Arrays.toString( new MaximumSubArrayProblem().maxSubArrayRes(nums)));
+		System.out.println( new MaximumSubArrayProblem().maxSubArrayDivideAndConquer(nums, 0, nums.length-1) );
+		
 	}
 	
 	public int maxSubArray(final List<Integer> A) {
@@ -76,5 +79,46 @@ public class MaximumSubArrayProblem {
         return res;
     }
 
-	
+	public int maxSubArrayDivideAndConquer(int[] nums,int l, int h) {
+	 /*
+	  * We can also solve the max subarray problem using
+	  * Divide and conquer technique.
+	  * This is based on the idea :
+	  * 1. Max Subarray lies either in left half.
+	  * 2. Max Subarray lies either in right half.
+	  * 3. It will be a sub-array crossing the midpoint 
+	  * 
+	  * The  base condition is just one element in array;		
+	  */
+		
+		if( l == h)
+			return nums[l];
+		
+		int m = l + (h-l)/2;
+		
+		return Math.max(  Math.max(maxSubArrayDivideAndConquer(nums,l,m),maxSubArrayDivideAndConquer(nums,m+1,h)) 
+				        , maxSubArrayCrossing(nums,l,m,h));
+		
+	}
+
+	private int maxSubArrayCrossing(int[] nums, int l, int m, int h) {
+		int sum = 0;
+		int leftSum = Integer.MIN_VALUE;
+		for (int i=m ; i>=l; i-- ) {
+			sum += nums[i];
+			if(sum > leftSum)		
+				leftSum = sum;
+					
+		}
+		
+		sum = 0;
+		int rightSum = Integer.MIN_VALUE;
+		for (int i=m+1 ; i<=h; i++ ) {
+			sum += nums[i];
+			if(sum > rightSum)		
+				rightSum = sum;
+		}
+		
+		return leftSum + rightSum;
+	}
 }
