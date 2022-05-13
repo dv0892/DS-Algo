@@ -7,7 +7,7 @@ public class MakeGood {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println( new MakeGood().makeGood("ssss"));
+		System.out.println( new MakeGood().makeGood("abBAcC"));
 	}
 	
 	 public String makeGood(String s) {
@@ -18,12 +18,12 @@ public class MakeGood {
 	        Deque<Character> stack = new ArrayDeque<>();
 	        
 	        int i=0;
-	        for( ;i<=s.length()-2;i++){
+	        for( ;i<s.length();i++){
 	            char  ch = s.charAt(i);
-	            if(   (ch+32) == s.charAt(i+1) 
+	            /*if(   (ch+32) == s.charAt(i+1) 
 	               || (ch-32) == s.charAt(i+1) ) {
 	                i++;
-	            } else{
+	            } else{*/
 	                
 	                if(!stack.isEmpty()){
 	                    if(   (ch+32) == stack.peek()
@@ -34,10 +34,10 @@ public class MakeGood {
 	                } 
 	                
 	                stack.push(ch);
-	            }
+	            //}
 	        }
 	        
-	        if( i == (s.length()-1) ) {
+	        /*if( i == (s.length()-1) ) {
 	        	char  ch = s.charAt(i);
 	        	if(!stack.isEmpty()){
                     if(   (ch+32) == stack.peek()
@@ -48,7 +48,7 @@ public class MakeGood {
                 } else
                 	stack.push(ch);
 	        }
-	        
+	        */
 	       
 	        
 	        return rev(stack, new StringBuilder()).toString();

@@ -26,6 +26,8 @@ public class NextGreaterElement {
 		   
 		   At the end the stack will be comprise of elements which couldn't be popped 
 		   because their next greater is never found.
+		   
+		   MONOTONIC STACK IN DECREASING ORDER
 		*/
 		for(int i=0;i<nums.length;i++) {
 			
