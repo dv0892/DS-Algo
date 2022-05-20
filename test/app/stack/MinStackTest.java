@@ -72,7 +72,7 @@ class MinStackSpaceOptimized {
     long min = Integer.MAX_VALUE;
     
     public MinStackSpaceOptimized() {
-        stack    = new ArrayDeque<Integer>();
+        stack    = new ArrayDeque<Long>();
     }
     
     public void push(int val) {
