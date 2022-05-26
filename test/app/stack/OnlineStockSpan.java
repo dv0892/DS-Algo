@@ -3,6 +3,7 @@ package test.app.stack;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.function.Predicate;
 
 public class OnlineStockSpan {
 
@@ -56,7 +57,12 @@ public class OnlineStockSpan {
 	}
 
 }
-
+class Filter {
+    
+    public static Predicate<String> nameStartingWithPrefix( String prefix ){
+        return (el) -> el.startsWith(prefix) ;
+    } 
+}
 
 class StockSpanner {
 	
