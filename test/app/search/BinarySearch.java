@@ -4,14 +4,14 @@ public class BinarySearch {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] a = {1,3,4,6,7,8,9};
+		int[] a = {1,3};
 		
-		System.out.println(new BinarySearch().search(a, 10));
+		System.out.println(new BinarySearch().search(a, 0));
 	}
 	
 	public int  search(int[] a, int x) {
 		
-		int st = 0, end = a.length - 1;
+		int st = 0, end = a.length-1 ;
 		
 		while(st <=  end) {
 			
