@@ -15,6 +15,8 @@ public class ArrangingCoins {
         int r = 1;
         while ( true ) {
         	long coins = ((long)r * (long)(r+1))/2;// Int Over-Flow here if long not used
+        	
+        	
             if( coins  > n)
                 break;
             r <<= 1 ;
