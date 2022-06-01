@@ -10,10 +10,20 @@ public class FindTargetIndicesAfterSortingArray {
 		// TODO Auto-generated method stub
 		int[] arr = {53,8,12,80,99,6,39,15,64,31,17,12,98,79,6,69,99,67,93,30,76,9,3,77,45,77};
 		
-		System.out.println( new FindTargetIndicesAfterSortingArray().targetIndices(arr,99));
+		System.out.println( new FindTargetIndicesAfterSortingArray().targetIndices1(arr,99));
 		
 		
 	}
+	
+	public List<Integer> targetIndices1(int[] arr, int target) {
+        int lessThanTarget=0, count = 0;
+        List<Integer> res = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) count++; else if (arr[i] < target) lessThanTarget++;
+        }
+        for (int i = 0; i < count; i++) res.add(lessThanTarget++);
+        return res;
+    }
 	
 	
 	public List<Integer> targetIndices(int[] nums, int target) {
@@ -48,7 +58,6 @@ public class FindTargetIndicesAfterSortingArray {
 		
 		return ans != -1 ? ans : ( (nums[mid] == target) ? mid : -1) ;
 	}
-	
 	
 	public int binarySearchLastIndex (int[] nums , int st , int end , int target ) {
 		if( st > end )
