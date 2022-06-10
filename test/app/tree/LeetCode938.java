@@ -15,6 +15,10 @@ package test.app.tree;
           this.right = right;
           this.parent = parent;
       }
+      
+      public String toString() {
+    	  return ""+val;
+      }
   }
  
 class Solution {
