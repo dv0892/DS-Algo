@@ -1,5 +1,9 @@
 package test.app.tree;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Objects;
+
 public class TreeUtils {
 	
 	TreeNode root ;
@@ -26,6 +30,27 @@ public class TreeUtils {
 		node2.parent = node3;*/
 		
 		
+		/* 
+		 *         12
+		 * 		  /  \
+		 *       /    \
+		 *      /	   \
+		 *     /		\
+		 *    5           18
+		 *    /\          / \
+		 *   /  \		 /   \
+		 *  /    \		/     \
+		 * 2	  9	    15	   19	
+		 * 		         \ 
+		 * 				  \
+		 * 				   \
+		 * 					17
+		 */
+		
+		
+		
+		
+		
 		TreeNode root = new TreeNode(12,null,null,null);
 		utils.root = root;
 		
@@ -43,18 +68,30 @@ public class TreeUtils {
 		utils.insert(root, 9);
 		
 		
-		
 		utils.inorderTraversal(utils.root);
-		//utils.preorderTraversal(root);
-		//utils.postorderTraversal(root);
+		System.out.println();
+		utils.inorderTraversalIterative(utils.root);
+		
+		System.out.println();
+		utils.preorderTraversal(utils.root);
+		System.out.println();
+		utils.preorderTraversalIterative(utils.root);
+		
+		System.out.println();
+		utils.postorderTraversal(utils.root);
+		System.out.println();
+		utils.postorderTraversalIterative(utils.root);
 		
 		/*System.out.println( utils.max(root) );
 		
 		System.out.println( utils.successor(root,15) );*/
 		
-		utils.delete( utils.search(root, 12));
+		//utils.delete( utils.search(root, 12));
 		
-		utils.inorderTraversal(utils.root);
+		//utils.inorderTraversal(utils.root);
+		
+		//System.out.println( utils.higher(utils.root, 12));
+		//System.out.println( utils.lower(utils.root, 12));
 	}
 	
 	public void inorderTraversal( TreeNode node ) {
@@ -64,6 +101,25 @@ public class TreeUtils {
 		inorderTraversal(node.left);
 		System.out.print( " " + node.val );
 		inorderTraversal(node.right);
+	}
+	
+	public void inorderTraversalIterative( TreeNode node ) {
+		if( node == null )
+			return ;
+		
+		Deque<TreeNode> stack = new ArrayDeque<>();
+		
+		while ( Objects.nonNull(node) || !stack.isEmpty() ) {
+			while( Objects.nonNull(node) ){
+				stack.push(node) ;
+				node = node.left ;
+			}
+			
+			node = stack.pop();
+			System.out.print( node );
+			
+			node = node.right;
+		}
 	}
 	
 	
@@ -76,6 +132,29 @@ public class TreeUtils {
 		preorderTraversal(node.right);
 	}
 	
+	public void preorderTraversalIterative( TreeNode node ) {
+		if( node == null )
+			return ;
+		
+		Deque<TreeNode> stack = new ArrayDeque<>();
+		stack.push(node);
+		
+		while ( !stack.isEmpty() ) {
+			
+			TreeNode temp  = stack.pop();
+			System.out.print( temp );
+			
+			if( Objects.nonNull(temp.right) )
+				stack.push(temp.right);
+			
+
+			if( Objects.nonNull(temp.left) )
+				stack.push(temp.left);
+			
+		}
+		
+	}
+	
 	
 	public void postorderTraversal( TreeNode node ) {
 		if( node == null )
@@ -84,6 +163,37 @@ public class TreeUtils {
 		postorderTraversal(node.left);
 		postorderTraversal(node.right);
 		System.out.print( " " + node.val );
+	}
+	
+	
+	public void postorderTraversalIterative( TreeNode node ) {
+		if( node == null )
+			return ;
+		
+		Deque<TreeNode> stack = new ArrayDeque<>();
+		
+		while ( Objects.nonNull(node) || !stack.isEmpty() ) {
+			// Moving to extreme left
+			while( Objects.nonNull(node) ){
+				stack.push(node) ;
+				node = node.left ;
+			}
+			
+			TreeNode temp = stack.peek().right;
+					
+			if( temp == null) {
+				temp = stack.pop();
+				System.out.print( temp );
+				
+				// This is the most interesting part of the program.
+				while( !stack.isEmpty() && temp == stack.peek().right) {
+					temp = stack.pop();
+					System.out.print( temp );
+				}
+			} else {
+				node = temp;
+			}
+		}
 	}
 	
 	public TreeNode search( TreeNode node , int x ) {
@@ -111,6 +221,72 @@ public class TreeUtils {
 		return min;
 	}
 	
+	public TreeNode higher( TreeNode node , int x ) {
+		
+		while ( node != null ) {
+			if ( x < node.val ) {
+				
+				if( node.left == null )
+					return node ; // This means we have reached the node which could be the immediate higher than this x
+				
+				node = node.left;
+			} else
+				
+				if( node.right != null ) {
+					node = node.right;
+				} else {
+					TreeNode parent  = node.parent;
+					while ( parent != null && parent.right == node ) {
+						node = parent;
+						parent = parent.parent ; // or node.parent
+					}
+					
+					return parent;
+				}
+		}
+		
+		
+		
+		return null;
+	}
+	
+	
+	public TreeNode lower( TreeNode node , int x ) {
+		
+		while ( node != null ) {
+			if ( x > node.val ) {
+				
+				if( node.right == null ) 
+					return node;
+
+				node = node.right;
+				
+			} else {
+				if( node.left != null ) {
+					node = node.left;
+				} else {
+					
+					/*
+					 * Here Since we need to find the lower search for X and we are ending as
+					 * left child of some node. ( And all the left child's are smaller of parent or parent is 
+					 * greater than its left subtree). 
+					 * For this reason,  we will move up the tree to find any ancestor which is the right child of its parent.
+					 * (the same technique that we used in find predecessor)
+					 */
+					TreeNode parent = node.parent;
+					while( parent != null && parent.left == node ) {
+						node = parent;
+						parent = parent.parent;
+					}
+					
+					return parent;
+				}
+				
+			}
+		}
+		
+		return null;
+	}
 	
 	public TreeNode max( TreeNode node  ) {
 		

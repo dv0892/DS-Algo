@@ -17,7 +17,7 @@ package test.app.tree;
       }
       
       public String toString() {
-    	  return ""+val;
+    	  return " "+val;
       }
   }
  
