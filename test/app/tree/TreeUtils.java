@@ -173,15 +173,17 @@ public class TreeUtils {
 		Deque<TreeNode> stack = new ArrayDeque<>();
 		
 		while ( Objects.nonNull(node) || !stack.isEmpty() ) {
+			
+			
 			// Moving to extreme left
 			while( Objects.nonNull(node) ){
 				stack.push(node) ;
 				node = node.left ;
 			}
 			
-			TreeNode temp = stack.peek().right;
+			TreeNode temp = stack.peek();
 					
-			if( temp == null) {
+			if( temp.right == null) {
 				temp = stack.pop();
 				System.out.print( temp );
 				
@@ -191,7 +193,7 @@ public class TreeUtils {
 					System.out.print( temp );
 				}
 			} else {
-				node = temp;
+				node = temp.right;
 			}
 		}
 	}
