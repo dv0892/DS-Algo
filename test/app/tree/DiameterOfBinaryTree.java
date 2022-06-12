@@ -33,7 +33,7 @@ public class DiameterOfBinaryTree {
         
     }
 	
-public int diameterOfBinaryTree(TreeNode root) {
+	public int diameterOfBinaryTree(TreeNode root) {
         
         Deque<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
