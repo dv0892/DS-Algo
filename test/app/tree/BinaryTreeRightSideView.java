@@ -16,7 +16,7 @@ public class BinaryTreeRightSideView {
 	 public List<Integer> rightSideView(TreeNode root) {
 	       
 		   /*
-		    * Using BFS to traverse.
+		    * Using BFS or Level first traversal mechanism to traverse.
 		    * For each level or Breadth we will move from right to left
 		    */
 	       List<Integer> res = new ArrayList<>();
