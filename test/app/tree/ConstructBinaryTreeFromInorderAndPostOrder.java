@@ -4,8 +4,8 @@ public class ConstructBinaryTreeFromInorderAndPostOrder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] postOrder = {9,3,15,20,7};
-		int[] inOrder =   {9,15,7,20,3};
+		int[] postOrder = {9,15,7,20,3};
+		int[] inOrder =   {9,3,15,20,7};
 		
 		System.out.println( new ConstructBinaryTreeFromInorderAndPostOrder().buildTree(postOrder, inOrder ));
 	}
@@ -23,10 +23,10 @@ public class ConstructBinaryTreeFromInorderAndPostOrder {
         	System.out.println( " Hi ");
         
         int index = search(inorder, postOrder[pi], il, ie );
-        int sizeOfRightSubTree = ie - index - 1 ;
+        int sizeOfRightSubTree = ie - index - 1;
             
         return new TreeNode( postOrder[pi],
-                             buildTree(postOrder,inorder,pi-sizeOfRightSubTree, il, index ) ,
+                             buildTree(postOrder,inorder,pi-sizeOfRightSubTree-1, il, index ) ,
                              buildTree(postOrder,inorder,pi-1,index+1,ie )
                            );    
         
