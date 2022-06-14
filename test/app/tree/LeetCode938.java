@@ -16,6 +16,10 @@ package test.app.tree;
           this.parent = parent;
       }
       
+      TreeNode(int val, TreeNode left, TreeNode right ) {
+          this(val,left,right,null);
+      }
+      
       public String toString() {
     	  return " "+val;
       }
