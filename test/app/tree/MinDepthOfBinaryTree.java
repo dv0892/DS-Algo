@@ -1,7 +1,9 @@
 package test.app.tree;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 import java.util.Objects;
 
 public class MinDepthOfBinaryTree {
@@ -19,6 +21,12 @@ public class MinDepthOfBinaryTree {
 		TreeNode root = new TreeNode(3,left,right,null);
 		
 		System.out.println( new MinDepthOfBinaryTree().minDepthUsingBFS(root));
+		
+		List<Integer> list = new ArrayList<>();
+		list.toArray( new Integer[0] );
+		
+		int[] example2 = list.stream().mapToInt(i -> i).toArray();
+		
 	}
 	
 	public int minDepth(TreeNode root) {
@@ -26,8 +34,8 @@ public class MinDepthOfBinaryTree {
         if( root == null )
             return 0;
         
-        if( root.left == null && root.right == null )
-            return 1;
+        /*if( root.left == null && root.right == null )
+            return 1;*/
         
         if( root.left == null )
             return 1 +  minDepth(root.right) ;
