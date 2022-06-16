@@ -8,17 +8,20 @@ public class kthLargest {
 		// TODO Auto-generated method stub
 		int[] nums = {3,2,3,1,2,4,5,5,6};
 		
-		System.out.println( new kthLargest().findKthLargest(nums, 6) );
+		System.out.println( new kthLargest().findKthLargest(nums, 9) );
 	}
 	
 	public int findKthLargest(int[] nums, int k) {
         
 		int l=0,r=nums.length-1;
-		k = nums.length-k;
+		//k = nums.length-k;
+		k--;
 		
 		while( true ) {
 		
-			Pair pair = partition(nums, l, r);
+			//Pair pair = partition(nums, l, r);
+			
+			Pair pair = partitionGreaterPivotLesser(nums, l, r);
 			
 			if ( k >= pair.s && ( (k)  <= pair.e ) ) {
 				int i = pair.s;
@@ -51,6 +54,32 @@ public class kthLargest {
             if( nums[j] == pivot) {
                 j++;
             } else if ( nums[j] < pivot ) {
+                swap(nums,++i,j++);
+            } else {
+                swap(nums,--k,j);
+            }
+        }
+        
+        Pair p = new Pair();
+        p.s = i+1;
+        p.e = j-1;
+        
+        return p;
+    }
+    
+    public Pair partitionGreaterPivotLesser( int[] nums , int l , int r ){
+        
+        int i = l-1;
+        int j = l;
+        int k = r+1;
+        
+        int random = ThreadLocalRandom.current().nextInt(l,r+1);
+        int pivot = nums[random];
+        
+        while( j < k ) {
+            if( nums[j] == pivot) {
+                j++;
+            } else if ( nums[j] > pivot ) {
                 swap(nums,++i,j++);
             } else {
                 swap(nums,--k,j);
