@@ -66,5 +66,11 @@ public class Utils {
     		return this.i + " " + this.j;
     	}
     }
+
+	public static void swap(int[][] points, int i, int j) {
+		int[] t   = points[i];
+		points[i] = points[j];
+		points[j] = t;
+	}
 	
 }
