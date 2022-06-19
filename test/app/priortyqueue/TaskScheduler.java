@@ -1,7 +1,9 @@
 package test.app.priortyqueue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class TaskScheduler {
@@ -10,7 +12,7 @@ public class TaskScheduler {
 		// TODO Auto-generated method stub
 		char[] tasks = {'B','C','D','E','F','G','A','A','A','A','A','A'};
 		
-		System.out.println( new TaskScheduler().leastInterval(tasks, 2));
+		System.out.println( new TaskScheduler().leastIntervalSimplified(tasks, 2));
 	}
 	
 	public int leastInterval(char[] tasks, int n) {
@@ -81,6 +83,49 @@ public class TaskScheduler {
         
     }
 
+	
+	
+	public int leastIntervalSimplified(char[] tasks, int n) {
+        
+		 if ( n == 0 )
+	            return tasks.length;
+		 
+		 Comparator<Task> com = (Task task1, Task task2)-> task2.count - task1.count ;	
+		 
+		 PriorityQueue<Task> pq = new PriorityQueue<>(com);
+	        
+	        short[] taskCount = new short[26];
+	        for( char task : tasks ){
+	            taskCount[task-'A']++;
+	        }
+	        
+	        // Add the tasks to Priority Queue
+	        for( int i=0;i<taskCount.length;i++) {
+	    	   if( taskCount[i] > 0)
+	    		   pq.add( new Task((char)('A'+i),taskCount[i],0) );
+	       }
+	       
+	       int time = 0;
+	       while( pq.size() > 0 ){
+	    	   List<Task> temp = new ArrayList<>();
+	    	   for( int i=1;i<=(n+1);i++) {
+	    		   if(!pq.isEmpty())
+	    			   temp.add(pq.remove());
+	    	   }
+	    	   
+	    	   for ( Task task : temp ) {
+	    		   if ( --task.count > 0 )
+	    			   pq.add(task);
+	    	   }
+	    	   
+	    	   time += pq.isEmpty() ? temp.size() : n+1;
+		   }	
+	        
+	       return time;
+       
+   }
+
+	
 }
 
 class Task {
