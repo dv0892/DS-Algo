@@ -29,7 +29,8 @@ public class SudokuSolver {
         r = r%9; c = c%9;
         if( board[r][c] != '.' )
              return solve( board , ( (c+1) >=9 ? r+1 : r) , c+1 );
-            		 
+        
+        // 49 - 58 is ASCII code for 1-9
         for ( int i=49 ;i<58 ;i++ ){
             
             if ( isValidPlacement ( board,r,c, (char)i )) {
