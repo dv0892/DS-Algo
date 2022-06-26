@@ -2,14 +2,14 @@ package test.app.tree;
 
 
   //Definition for a binary tree node.
-   class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
+   public class TreeNode {
+      public int val;
+      public TreeNode left;
+      public TreeNode right;
       TreeNode parent;
       TreeNode() {}
       TreeNode(int val) { this.val = val; }
-      TreeNode(int val, TreeNode left, TreeNode right, TreeNode parent) {
+      public TreeNode(int val, TreeNode left, TreeNode right, TreeNode parent) {
           this.val = val;
           this.left = left;
           this.right = right;
