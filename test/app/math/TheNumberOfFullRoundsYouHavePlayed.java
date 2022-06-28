@@ -56,6 +56,9 @@ public class TheNumberOfFullRoundsYouHavePlayed {
         int eh = Integer.parseInt(logoutTime.substring(0,logoutTime.indexOf(':')));
         int em = Integer.parseInt(logoutTime.substring(logoutTime.indexOf(':')+1));
         
+        if(sh == eh && em - sm < 15 && em - sm >= 0)
+            return 0;
+        
         if ( sm % 15 != 0 ) {
         	int rem = sm % 15;
         	sm =  sm + 15 - rem;
