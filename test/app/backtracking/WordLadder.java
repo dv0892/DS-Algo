@@ -17,8 +17,55 @@ public class WordLadder {
 		List<String> wordlist = new ArrayList<>();
 		Arrays.asList("hot","dot","tog","cog");
 		
-		System.out.println( new WordLadder().ladderLength("hit", "cog", Arrays.asList("hot","dot","tog","cog")));
+		System.out.println( new WordLadder().ladderLength1("hit", "cog", Arrays.asList("hot","dot","dog","lot","log","cog")));
 	}
+	
+	
+public int ladderLength1(String beginWord, String endWord, List<String> wordList) {
+        
+      Set<String> set = new HashSet<>(wordList);
+      if( !set.contains(endWord) )
+    	  return 0;
+      
+      Map<String,List<String>> map = new HashMap<>();
+      for ( String word : wordList ) {
+    	  for( int i=0;i<word.length();i++) {
+    		  String key = word.substring(0,i) + "*" + word.substring(i+1);
+    		  map.merge(key, new ArrayList<>(Arrays.asList(word)), (l1,l2) -> { l1.addAll(l2); return l1; } );
+    	  }
+      }
+      
+      Deque<String> q = new LinkedList<>();
+      q.add(beginWord);
+      
+      Set<String> visited = new HashSet<>();
+      int level = 0;
+      
+      while ( !q.isEmpty() ) {
+    	  int size = q.size();
+    	  while (size-- > 0 ) {
+    		  String word = q.remove();
+    		  
+    		  if ( word.equals(endWord) )
+    			  return level;
+    		  
+    		  for( int i=0;i<word.length();i++) {
+        		  String key = word.substring(0,i) + "*" + word.substring(i+1);
+        		  
+        		  for ( String neighbour : map.getOrDefault(key,  new ArrayList<>())) {
+        			  if( !word.equals(neighbour) && !visited.contains(neighbour)) {
+        				  visited.add(neighbour);
+        				  q.add(neighbour);
+        			  }
+        		  }
+        	  }
+    	  }
+    	  level++;
+      }
+      
+        
+        return 0;
+    }
 	
 	public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         
