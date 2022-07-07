@@ -4,7 +4,7 @@ import test.app.tree.Tree;
 
 public class BinarySearchTree< T extends Comparable<T> > implements Tree<T> {
 	
-	Node<T> root ;
+	protected Node<T> root ;
 
 	@Override
 	public Tree<T> insert(T data) {
@@ -13,16 +13,16 @@ public class BinarySearchTree< T extends Comparable<T> > implements Tree<T> {
 				
 	}
 
-	private  Node<T> insert(T data, Node<T> node ) {
+	protected  Node<T> insert(T data, Node<T> node ) {
 		 if( java.util.Objects.isNull(node) )
 			 return new Node<>(data);
 		
 		 if( data.compareTo(node.getData()) < 0)
 			 node.setLeftChild(  insert( data , node.getLeftChild()) );
-		 else
+		 else if ( data.compareTo(node.getData()) > 0 )
 			 node.setRightChild( insert( data , node.getRightChild()) );
-					 
-		return node;
+		 
+		 return node;
 		
 	}
 
@@ -31,7 +31,7 @@ public class BinarySearchTree< T extends Comparable<T> > implements Tree<T> {
 		root = delete(data,root);
 	}
 	
-	public Node<T> delete(T data , Node<T> node ) {
+	protected Node<T> delete(T data , Node<T> node ) {
 		
 		if( java.util.Objects.isNull(node) )
 			 return null;
@@ -73,7 +73,7 @@ public class BinarySearchTree< T extends Comparable<T> > implements Tree<T> {
 		return getMax(root);
 	}
 
-	private T getMax(Node<T> node) {
+	protected T getMax(Node<T> node) {
 		while( java.util.Objects.nonNull(node.getRightChild()) )
 			node = node.getRightChild();
 		
@@ -88,7 +88,7 @@ public class BinarySearchTree< T extends Comparable<T> > implements Tree<T> {
 		return getMin(root);
 	}
 	
-	private T getMin(Node<T> node ) {
+	protected T getMin(Node<T> node ) {
 		while( java.util.Objects.nonNull(node.getLeftChild()) )
 			node = node.getLeftChild();
 		
@@ -111,9 +111,21 @@ public class BinarySearchTree< T extends Comparable<T> > implements Tree<T> {
 			return;
 		
 		System.out.print( node );
-		
 		traverse(node.getLeftChild());
 		traverse(node.getRightChild());
+		
 	}
+	
+	
+	private void traverse(Node<T> node, int level ) {
+		if ( java.util.Objects.isNull(node) )
+			return;
+		
+		System.out.print( node );
+		traverse(node.getLeftChild());
+		traverse(node.getRightChild());
+		
+	}
+	
 
 }
