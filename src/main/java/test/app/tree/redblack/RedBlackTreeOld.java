@@ -11,13 +11,13 @@ public class RedBlackTreeOld< T extends Comparable<T>  > extends BinarySearchTre
 	protected  Node<T> insert(T data, Node<T> node ) {
 		Node<T> nodeToBeInserted  = new Node<>(data);
 		root = insert(nodeToBeInserted, node);
-		fixRedBlackProperties( nodeToBeInserted );
+		fixRedBlackPropertiesAfterInsert( nodeToBeInserted );
 		root.color = Color.BLACK;
 		
 		return root;
 	}
 	
-	private void fixRedBlackProperties( Node<T> insertedNode) {
+	private void fixRedBlackPropertiesAfterInsert( Node<T> insertedNode) {
 		
 		if ( java.util.Objects.nonNull(insertedNode.getParent()) && RED == insertedNode.getParent().color  ) {
 			
@@ -31,7 +31,7 @@ public class RedBlackTreeOld< T extends Comparable<T>  > extends BinarySearchTre
 					grandParent.flipColor();
 					grandParent.getRightChild().flipColor();
 					
-					fixRedBlackProperties( grandParent );
+					fixRedBlackPropertiesAfterInsert( grandParent );
 				} else {
 					if(  parent.getRightChild() == insertedNode ) {
 						// Do Left rotation on Parent
@@ -60,7 +60,7 @@ public class RedBlackTreeOld< T extends Comparable<T>  > extends BinarySearchTre
 					grandParent.flipColor();
 					grandParent.getLeftChild().flipColor();
 					
-					fixRedBlackProperties( grandParent );
+					fixRedBlackPropertiesAfterInsert( grandParent );
 				} else {
 					if( parent.getLeftChild() == insertedNode ) {
 						// Do Right rotation on Parent

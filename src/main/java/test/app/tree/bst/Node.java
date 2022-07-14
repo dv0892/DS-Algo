@@ -56,4 +56,13 @@ package test.app.tree.bst;
 		public static enum Color { RED, BLACK };
 }
     
+    class NilNode <T extends Comparable<T> > extends Node<T>{
+
+		public NilNode(T data) {
+			super(data);
+			this.color = Color.BLACK;
+		}
+    	
+    }
+    
  

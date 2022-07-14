@@ -117,15 +117,7 @@ public class BinarySearchTree< T extends Comparable<T> > implements Tree<T> {
 	}
 	
 	
-	private void traverse(Node<T> node, int level ) {
-		if ( java.util.Objects.isNull(node) )
-			return;
-		
-		System.out.print( node );
-		traverse(node.getLeftChild());
-		traverse(node.getRightChild());
-		
-	}
+	
 	
 
 }
