@@ -31,6 +31,35 @@ public class MaximumSubArrayProblem {
         
     }
 	
+	public int maxSubArray1(int[] nums) {
+        
+	       int runningSum = 0, maxSum = nums[0] ;
+	       int s=0,e=0;
+	       int sf ,ef ;
+	        sf = ef = 0;
+	       for( int i=0;i<nums.length; i++ ){
+	           
+	           if( nums[i] > ( nums[i] + runningSum) ){
+	               s = e = i;
+	               runningSum = nums[i] ;
+	           } else{
+	               e++;
+	               runningSum += nums[i] ;
+	           }
+	           
+	           if(  runningSum > maxSum ){
+	               maxSum =  runningSum ;
+	               sf = s;ef = e;
+	               
+	           }
+	           
+	       }
+	    
+	        
+	        return maxSum;
+	        
+	    }
+	
 	
 	public int maxSubArray(int[] nums) {
         
