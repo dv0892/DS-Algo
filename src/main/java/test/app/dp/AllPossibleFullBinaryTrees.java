@@ -1,6 +1,7 @@
 package test.app.dp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,8 @@ public class AllPossibleFullBinaryTrees {
 		// TODO Auto-generated method stub
 		int n=7;
 		TreeNode[] dp = new TreeNode[n+1];
-		System.out.println( new AllPossibleFullBinaryTrees().allPossibleFBT( new HashMap<>(),7));
+		//System.out.println( new AllPossibleFullBinaryTrees().allPossibleFBT( new HashMap<>(),7));
+		System.out.println( new AllPossibleFullBinaryTrees().allPossibleFBTBottomUp(7));
 	}
 	
 	// A Full Binary Tree has always odd number of nodes.
@@ -55,6 +57,45 @@ public class AllPossibleFullBinaryTrees {
        dp.put(n, listOfTrees);
        
        return listOfTrees;
+    }
+	
+	public List<TreeNode> allPossibleFBTBottomUp( int n) {
+        if( n%2 == 0)
+            return new ArrayList<>();
+       
+       
+       Map<Integer,List<TreeNode>> dp = new HashMap<>();
+       dp.put(1, Arrays.asList( new TreeNode()) );
+       
+       int c=3;
+       while( c <= n) {
+    	   
+    	   List<TreeNode> listOfTrees = new ArrayList<>();
+    	   
+    	   // Solving smaller sub-problems first
+    	   int i = 1;
+    	   while(i < c) {
+    		   
+    		   List<TreeNode> left = dp.get(i);
+               List<TreeNode> right = dp.get(c-i-1);
+    		   
+               for(TreeNode l : left ) {
+            	   for(TreeNode r : right ) {
+            		   TreeNode newRoot = new TreeNode();
+            		   newRoot.left = l;
+            		   newRoot.right = r;
+            		   
+            		   listOfTrees.add(newRoot);
+            	   }
+               }
+    		   i+=2;
+    	   }	  
+    	   
+    	   dp.put(c, listOfTrees);
+           c+=2;
+       }
+       return dp.get(n);
+       
     }
 
 	private void addTwoNodesToAllItsLeaf(TreeNode node,  List<TreeNode> listOfTrees, TreeNode root) {
