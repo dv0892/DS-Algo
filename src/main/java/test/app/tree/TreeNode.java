@@ -7,8 +7,8 @@ package test.app.tree;
       public TreeNode left;
       public TreeNode right;
       TreeNode parent;
-      TreeNode() {}
-      TreeNode(int val) { this.val = val; }
+      public TreeNode() {}
+      public TreeNode(int val) { this.val = val; }
       public TreeNode(int val, TreeNode left, TreeNode right, TreeNode parent) {
           this.val = val;
           this.left = left;

@@ -17,6 +17,10 @@ public class ClimbStairs {
 	/*
 	 * Here the individual recursive calls are too much 
 	 * repetitive work. Since they are doing repetitive work we store the subproblems result.
+	 * Here we are kind of using backtracking to get all the distinct paths.
+	 * First we are climbing the stairs using 1 step and then combing back to make 2 step and calulating the further pathes from there
+	 * 
+	 * 
 	 */
 	   if( n < 0 )
 		   return 0;
