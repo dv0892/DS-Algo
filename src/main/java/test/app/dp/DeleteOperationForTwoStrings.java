@@ -7,9 +7,9 @@ public class DeleteOperationForTwoStrings {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		DeleteOperationForTwoStrings obj = new DeleteOperationForTwoStrings();
-		System.out.println( obj.minDistance ("leetcode","etco") );
+		System.out.println( obj.minDistance ("ode","etco") );
 		System.out.println("Min Distance 1");
-		System.out.println( obj.minDistance1("leetcode","etco") );
+		System.out.println( obj.minDistance1("ode","etco") );
 	}
 	
 	
