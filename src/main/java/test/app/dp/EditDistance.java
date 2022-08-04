@@ -30,9 +30,9 @@ public class EditDistance {
 			return minDistance(word1, word2,i+1,j+1);
 		
 		//We can either Replace, Insert or delete the element in case of mismatch
-		return 1 + Math.min( minDistance(word1, word2,i+1,j+1),
-				   Math.min( minDistance(word1, word2,i,j+1) , 
-						   	 minDistance(word1, word2,i+1,j) 
+		return 1 + Math.min( minDistance(word1, word2,i+1,j+1),// R
+				   Math.min( minDistance(word1, word2,i,j+1) , // I
+						   	 minDistance(word1, word2,i+1,j)   // D
 						   )
 				           );
 	}
