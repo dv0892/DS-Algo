@@ -29,8 +29,9 @@ public class MaximizeSumOfArrayAfterKNegations {
 	                } else if ( nums[i+1] > 0 ) {
 	               		 nums[i] = - nums[i];
 	                     sum += ( nums[i]*2 ); 
-	                     Arrays.sort(nums);
-	                     i=0;
+	                    // Arrays.sort(nums);
+	                     if( nums[i+1] < nums[i] )
+	                    	 i++;
                      	// This means we have made all the negative mumbers positive and still k is remaining .
                         //Now we will apply K on smallest positive number
             	    } else{
