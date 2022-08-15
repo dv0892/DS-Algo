@@ -7,9 +7,25 @@ public class MinimumMovesToConvertString {
 		System.out.println( new MinimumMovesToConvertString().minimumMoves("OOXXOXXX"));
 	}
 	
-	public int minimumMoves(String word) {
+	
+	public int minimumMoves(String s) {
+	    int sum=0,f=0;
+	        for(int i=0;i<s.length();){
+	            if(s.charAt(i)=='X'){
+	                i+=3;//we just need to skip 3 places when it is x :-)
+	                sum++;
+	                
+	            }
+	            else{
+	                i++;
+	            }
+	        }
+	        return sum;
+	    }
+	
+	public int minimumMoves_BadCode(String word) {
 	    
-		// Quite Bad Code
+		// Quite Bad Code, though solution is fine.
 		
 		       int moves = 0,left=0,right=0,middle=0,n = word.length();
 		       char[] s = word.toCharArray();
