@@ -4,10 +4,32 @@ public class JumpGameII {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nums = {7,8,4,2,0,6,4,1,8,7,1,7,4,1,4,1,2,8,2,7,3,7,8,2,4,4,5,3,5,6,8,5,4,4,7,4,3,4,8,1,1,9,0,8,2};
-		System.out.println( new JumpGameII().jump(nums));
+		int[] nums = {7,0,9,6,9,6,1,7,9,0,1,2,9,0,3};
+		System.out.println( new JumpGameII().jump_Leet(nums));
 	}
 
+	
+public int jump_CleanCode(int[] nums) {
+		
+		if( nums.length == 1 )
+			return 0;
+		
+		int n = nums.length-1;
+		int farthestIndex = 0 , count = 0 , EndOfRange = 0;
+		
+		
+		for( int i=0;i<n;i++) {
+			farthestIndex = Math.max(farthestIndex, i + nums[i]);
+			if( i == EndOfRange ) {
+				farthestIndex = EndOfRange = farthestIndex;
+				count++;
+			}
+		}
+		
+		return count;
+		
+    }
+	
 	public int jump(int[] nums) {
 		
 		if( nums.length == 1 )
@@ -32,5 +54,34 @@ public class JumpGameII {
 			count++;
 			s = max_i ;
 		}
+    }
+	
+	
+	public int jump_Leet(int[] nums) {
+        int n = nums.length;
+        int jump =0;
+        for(int a =0; a<n-1;)
+        {
+            int endofrangeindex = a+nums[a];
+            if( endofrangeindex >= n-1)
+            {
+                jump++;
+                break;
+            }
+            int farthestindex = a;
+            int indexwithfarthestindexjump = a;
+            
+            for(int b = a+1; b<=endofrangeindex; b++)
+            {
+                if(b+nums[b] > farthestindex)
+                {
+                    farthestindex = b + nums[b];
+                    indexwithfarthestindexjump = b;
+                }
+            }
+            a = indexwithfarthestindexjump;
+            jump++;
+        }
+        return jump;
     }
 }
