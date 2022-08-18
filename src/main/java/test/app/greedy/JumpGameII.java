@@ -5,7 +5,7 @@ public class JumpGameII {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] nums = {7,0,9,6,9,6,1,7,9,0,1,2,9,0,3};
-		System.out.println( new JumpGameII().jump_Leet(nums));
+		System.out.println( new JumpGameII().jump(nums));
 	}
 
 	
@@ -44,11 +44,11 @@ public int jump_CleanCode(int[] nums) {
 			if ( t == n ) 
 				return count + 1;
 			
-			int i = s , j = t, t1 = Math.min(n,t+nums[t]) , max_i = t;
-			while( ++i < j ) {
-				if ( ( Math.min(n,i+nums[i]) ) > t1 ) {
+			int i = s , j = t, max_i = t;
+			while( ++i <= j ) {
+				if ( ( Math.min(n,i+nums[i]) ) > t ) {
 					max_i = i;
-					t1 = Math.min(n,i+nums[i]);
+					t = Math.min(n,i+nums[i]);
 				}
 			}
 			count++;
