@@ -41,10 +41,5 @@ public class SmallestValueOfRearrangedNumber {
         return isNeg ? -num  : num ;
     }
     
-    public static void swap(Integer[] arr, int i, int j){
-        Integer t = arr[i];
-        arr[i]=arr[j];
-        arr[j]=t;
-    }
 
 }
