@@ -12,17 +12,17 @@ public class MinimumTimeToTypeWordUsingSpecialTypewriter {
         
         for( int i=0;i <word.length(); i++ ){
             
-            int c = word.charAt(i) - 'a';
+            int target = word.charAt(i) - 'a';
             
             int seconds = 0 ;
-            if( (prev-c) > 0 ) {
-                seconds +=  Math.min(prev-c, 25 - prev + c + 1);
-            } else if( (c-prev) > 0 ) {
-                seconds +=  Math.min( c-prev, prev + 25 - c + 1);
+            if( (prev-target) > 0 ) {
+                seconds +=  Math.min(prev-target, 26 + target-prev);
+            } else if( (target-prev) > 0 ) {
+                seconds +=  Math.min(target-prev, 26 + prev-target);
             }
             
-            ans +=  (++seconds);
-            prev = c;
+            ans += (seconds+1);
+            prev = target;
         }
         
         return ans;
