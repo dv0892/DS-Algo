@@ -1,6 +1,13 @@
 package test.app.utils;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.stream.Stream;
 
 
 public class Utils {
@@ -71,6 +78,35 @@ public class Utils {
 		int[] t   = points[i];
 		points[i] = points[j];
 		points[j] = t;
+	}
+	
+	public static int[][] readLeetInput( String file ) {
+		
+		int[][] result = new int[1][];
+		
+		
+		try (Scanner s = new Scanner(new File(file))) {
+			String data = s.nextLine();
+			String[] rows = data.split("}");
+			result = new int[rows.length][];
+			
+			int row=0;
+			for ( String r : rows ) {
+				String[] cols = (r.substring(r.lastIndexOf("{")+1)).split(",");
+				int[] arr = new int[cols.length];int i=0;
+				for( String val : cols ) {
+					arr[i++] = Integer.parseInt(val);
+				}
+				result[row++] = arr;
+			}
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return result;
+		
 	}
 	
 }
