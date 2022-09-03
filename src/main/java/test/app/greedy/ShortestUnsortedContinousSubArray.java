@@ -1,13 +1,33 @@
 package test.app.greedy;
 
+import java.util.Arrays;
+
 public class ShortestUnsortedContinousSubArray {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nums = { 20,30,40,50,60,35,70,80,90,10 };
+		int[] nums = { 2,6,4,8,10,9,15 };
+		System.out.println( new ShortestUnsortedContinousSubArray().findUnsortedSubarray_Other(nums));
 		System.out.println( new ShortestUnsortedContinousSubArray().findUnsortedSubarray(nums));
 	}
 	
+	
+	public int findUnsortedSubarray_Other(int[] nums) { 
+		int[] sorted = nums.clone();
+		Arrays.sort(sorted);
+		
+		int l=0 , r = sorted.length-1;
+	    
+		while( l < sorted.length && sorted[l] == nums[l] )
+			l++;
+		
+		while( r >= 0 && sorted[r] == nums[r] )
+			r--;
+		
+		return l > r ? 0 : r-l+1;
+	
+	
+	}
 	
 	public int findUnsortedSubarray(int[] nums) {
 		if( nums.length == 1 )
