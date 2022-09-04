@@ -10,7 +10,7 @@ public class IncreasingTripletSubsequence {
 	}
 	
 	 public boolean increasingTriplet(int[] nums) {
-	     
+	     //  GOOD QUESTION
          if( nums.length < 3 )
         	 return false;
          
@@ -34,5 +34,31 @@ public class IncreasingTripletSubsequence {
          
 		 return false;   
 	 }
+	 
+	 
+	 public boolean increasingTriplet_Old(int[] nums) {
+	     if( nums.length < 3 )
+	        	 return false;
+	         
+	         int min1 , min2, pmin1 , pmin2 ;
+	         pmin1 = pmin2 =min1 = min2 = nums[0];
+	         
+	         for ( int i=1;i<nums.length;i++) {
+	        	 if( (pmin1 < pmin2 && pmin2 < nums[i]) || (min1 < min2 && min2 < nums[i]))
+	        		 return true;
+	        	 
+	        	 if( nums[i] <= min1 ) {
+	        		 pmin1 = min1;
+	        		 pmin2 = min2;
+	        		 min1 = min2 = nums[i];
+	        	 } else if( min1 == min2 ) {
+	        		 min2 = nums[i];
+	        	 } else if ( nums[i] <= min2 ) {
+	        		 min2 = nums[i];
+	        	 } 
+	         }
+	         
+			 return false;      
+	    }
 
 }
