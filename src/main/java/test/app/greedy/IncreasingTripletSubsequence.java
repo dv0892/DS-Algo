@@ -5,8 +5,8 @@ public class IncreasingTripletSubsequence {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println( new IncreasingTripletSubsequence().increasingTriplet( new int[] {
-		/*1,0,0,0,0,10,0,0,0,10000*/		
-		50,40,60,30,39,30,20,25,27}));
+		1,0,0,0,0,10,0,0,0,10000		
+		/*50,40,60,30,39,30,20,25,27*/}));
 	}
 	
 	 public boolean increasingTriplet(int[] nums) {
@@ -27,7 +27,7 @@ public class IncreasingTripletSubsequence {
         		 min1 = min2 = nums[i];
         	 } else if( min1 == min2 && nums[i] > min1 ) {
         		 min2 = nums[i];
-        	 } else if ( nums[i] > min1 && nums[i] <= min2 ) {
+        	 } else if ( nums[i] > min1 && nums[i] < min2 ) {
         		 min2 = nums[i];
         	 } 
          }
