@@ -4,7 +4,9 @@ public class FindTownJudge {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		String line = "acb->bna";
+		int index = line.indexOf("->");
+		System.out.println( line.substring(0,index) + "---"+ line.substring(index+2));
 	}
 	
     public int findJudge(int n, int[][] trust) {
