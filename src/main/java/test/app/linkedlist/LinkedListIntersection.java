@@ -28,26 +28,26 @@ public class LinkedListIntersection {
 	        if( index > 0 ){
 	          addNode(line.substring(0,index) , line.substring(index+2) , nodesMap);
 	        } else{
-	          
-	          String[] nodes = line.split(",");
-	          Set<String> uniqueNodes = new HashSet<>();
-	          boolean intersected = false;
-	          
-	          for ( String nodeId : nodes ) {
-	            Node node = nodesMap.get(nodeId); 
-	              if ( java.util.Objects.nonNull(node) && doLinkedListsIntersect( node , uniqueNodes )  ){
-	                   intersected = true;
-	                   break;
-	              } 
-	          }
-	          
-	          if( intersected )
-	            System.out.println("True");
-	          else
-	            System.out.println("True");
+	          checkNodeIntersection(line, nodesMap);
 	        }
 	    }
 	  }
+
+
+	private static void checkNodeIntersection(String line, Map<String, Node> nodesMap) {
+		  Set<String> uniqueNodes = new HashSet<>();
+		  
+		  String[] nodes = line.split(",");
+		  for ( String nodeId : nodes ) {
+		    Node node = nodesMap.get(nodeId); 
+		      if ( java.util.Objects.nonNull(node) && doLinkedListsIntersect( node , uniqueNodes )  ){
+		    	  System.out.println("True");
+		          return; 
+		      } 
+		  }
+		  
+		  System.out.println("False");
+	}
 	  
 	  
 	  public static boolean  doLinkedListsIntersect( Node node ,Set<String> uniqueNodes ){
