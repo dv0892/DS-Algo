@@ -109,4 +109,30 @@ public class Utils {
 		
 	}
 	
+	public static int[] readLeetInput1( String file ) {
+		
+		int[] arr = new int[0];
+		try (Scanner s = new Scanner(new File(file))) {
+			String data = s.nextLine();
+			String[] rows = data.split("]");
+			
+			    String r = rows[0];
+				String[] cols = (r.substring(r.indexOf("[")+1)).split(",");
+				arr = new int[cols.length];int i=0;
+				for( String val : cols ) {
+					arr[i++] = Integer.parseInt(val);
+				}
+				
+			
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return arr;
+		
+	}
+	
+	
 }
