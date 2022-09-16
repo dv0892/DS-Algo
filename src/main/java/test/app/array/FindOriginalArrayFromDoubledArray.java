@@ -15,9 +15,9 @@ public class FindOriginalArrayFromDoubledArray {
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 
-		int[] changed = {6,3,0,0,1,2};Utils.readLeetInput1("leetinput");
+		int[] changed = Utils.readLeetInput1("leetinput");
 		 
-		System.out.println(Arrays.toString( new FindOriginalArrayFromDoubledArray().findOriginalArrayClean(changed) ));
+		System.out.println(Arrays.toString( new FindOriginalArrayFromDoubledArray().findOriginalArrayClean_Cleaned(changed) ));
 		
 		
 	}
@@ -28,13 +28,42 @@ public int[] findOriginalArrayClean_Cleaned(int[] changed) throws FileNotFoundEx
         int n = changed.length ;
         if( changed.length % 2 == 1 )
             return new int[0];
+        /* We are sorting to eliminate the case : 
+         * When we are checking element using frequencies ,
+         * All the halfs of element should be checked earlier before their double is checked.
         
+        */
         Arrays.sort(changed);
                
         int[] original = new int[n/2];
         Map<Integer,Integer> map = new HashMap<>();
         
+        for( int i=0;i<n;i++){
+            map.put(changed[i], map.getOrDefault(changed[i], 0) + 1 );
+        }
+        
+        
         for( int i=0,k=0;i<n;i++){
+        	
+        	if(  changed[i] == 0 && map.getOrDefault(0,0) > 1 ) {
+        		map.put(0, map.get(changed[i])-2);
+        		map.remove(0, 0);
+        		
+        		original[k++] = changed[i];
+        		
+        	} else if ( changed[i] != 0 && map.getOrDefault(changed[i],0) > 0 && map.getOrDefault(changed[i]*2,0) > 0 ) {
+        		map.put(changed[i], map.get(changed[i])-1);
+        		map.remove(changed[i], 0);
+        		
+        		map.put(changed[i]*2, map.get(changed[i]*2)-1);
+        		map.remove(changed[i]*2, 0);
+        		
+        		original[k++] = changed[i];
+        	}
+        }
+        
+        
+        /*for( int i=0,k=0;i<n;i++){
             int half = changed[i]/2;
 			if( ( ( changed[i] & 1) == 0) && map.getOrDefault(half, 0) > 0 ) {
             	map.put(half, map.get(half)-1);
@@ -42,7 +71,7 @@ public int[] findOriginalArrayClean_Cleaned(int[] changed) throws FileNotFoundEx
             	original[k++] = half;
             } else
             	map.put(changed[i], map.getOrDefault(changed[i], 0) + 1 );
-        }
+        }*/
         
         return map.size() == 0 ? original : new int[0] ;
     }
