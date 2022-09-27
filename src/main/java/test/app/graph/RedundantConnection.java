@@ -27,14 +27,18 @@ public class RedundantConnection {
             int src  = edge[0];
             int dest = edge[1];
             
-            for( int n : map.getOrDefault(src,new ArrayList<>()) ){
+            /*for( int n : map.getOrDefault(src,new ArrayList<>()) ){
                 if( n != dest ){
                 	seen.clear();
                 	seen.add(src);
-                    if( dfs(src , n , dest , map ) )
+                    if( dfs(n , dest , map ) )
                         ans =  new int[]{src,dest};
                 }
-            }
+            }*/
+            
+            seen.clear();
+            if( dfs(src , dest , map ) )
+                ans =  new int[]{src,dest};
             
             map.computeIfAbsent(src , x -> new ArrayList<>() ).add(dest);
             map.computeIfAbsent(dest , x -> new ArrayList<>() ).add(src);
@@ -44,7 +48,7 @@ public class RedundantConnection {
     }
     
     
-    public boolean dfs(int parent , int node , int target , Map<Integer,List<Integer>> map ) { 
+    public boolean dfs( int node , int target , Map<Integer,List<Integer>> map ) { 
         
         if ( node == target )
             return true;
@@ -52,7 +56,7 @@ public class RedundantConnection {
         for ( int neighbour : map.getOrDefault(node,new ArrayList<>()) ){
             if( !seen.contains(neighbour) ) {
             	seen.add(node);
-                if( dfs( node , neighbour, target, map) )
+                if( dfs( neighbour, target, map) )
                     return true;
             }
         }
