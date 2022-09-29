@@ -43,6 +43,14 @@ public class GraphSearchWithAdjacenyList {
 	
 	public static void depthFirstSearch(test.app.graph.Graph.Vertex v,Graph graph) {
 
+		/* This might look like Back-tracking but it is not
+		   because in Bactracking We revert the decision we take at end because later we might take another 
+		   decision sequence of decisions.
+		   But in DFS , we never revert the decision we once take.
+		   like we are marking a node as isVistited as true
+		   and never reverted this.
+		*/
+		
 		v.isVisited  = true;
 		
 		for(Vertex adjV : graph.adj.get(v)) {
