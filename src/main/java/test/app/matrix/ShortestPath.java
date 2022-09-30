@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class ShortestPath {
 	
 	public static void main( String[] args ) {
-		int size = 4;
+		int size = 2;
 		int[][] mat = new int[size][size];
 		
 		System.out.println( new ShortestPath().shortestPath(mat));
@@ -24,6 +24,7 @@ public class ShortestPath {
 		boolean[][] visited = new boolean[m][n];
 		Deque<Integer> q = new LinkedList<>();
 		q.add(0);
+		visited[0][0] = true;
 		
 		int level = 0;
 		while( !q.isEmpty() ) {
@@ -33,16 +34,17 @@ public class ShortestPath {
 				int r = cord / n;
 				int c = cord % n;
 				
-				if( r == m-1 && c== n-1)
-					return level;
-				
-				visited[r][c] = true;
 				for( int[] d : dir ) {
 					int nr = r + d[0];
 					int nc = c + d[1];
 					
 					if( nr > -1 && nr < m && nc > -1 && nc < n && !visited[nr][nc]) {
+						
+						if( nr == m-1 && nc== n-1)
+							return level+1;
+						
 						q.add(nr*n + nc);
+						visited[nr][nc] = true;
 					}
 				}
 			}
