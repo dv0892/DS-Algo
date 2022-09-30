@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class ShortestPath {
 	
 	public static void main( String[] args ) {
-		int size = 3;
+		int size = 4;
 		int[][] mat = new int[size][size];
 		
 		System.out.println( new ShortestPath().shortestPath(mat));
@@ -14,7 +14,7 @@ public class ShortestPath {
 		System.out.println( new ShortestPath().shortestPathUsingBacktracing(mat, 0, 0, new boolean[size][size], 0) );
 	}
 	
-	int[][] dir = {{1,0},{-1,0},{0,1},{0,-1}};
+	int[][] dir = {{1,0},{-1,0},{0,1},{0,-1},{1,1}};
 	
 	public int shortestPath( int[][] mat ) {
 		

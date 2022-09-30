@@ -87,12 +87,12 @@ public class Utils {
 		
 		try (Scanner s = new Scanner(new File(file))) {
 			String data = s.nextLine();
-			String[] rows = data.split("}");
+			String[] rows = data.split("]");
 			result = new int[rows.length][];
 			
 			int row=0;
 			for ( String r : rows ) {
-				String[] cols = (r.substring(r.lastIndexOf("{")+1)).split(",");
+				String[] cols = (r.substring(r.lastIndexOf("[")+1)).split(",");
 				int[] arr = new int[cols.length];int i=0;
 				for( String val : cols ) {
 					arr[i++] = Integer.parseInt(val);
