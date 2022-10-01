@@ -3,8 +3,31 @@ package test.app.dp;
 public class DecodeWays {
 
 	public static void main(String[] args) {
-		System.out.println( new DecodeWays().numDecodingsDp("10"));
+		System.out.println( new DecodeWays().numDecodingsDpOpt("999999999119999999"));
 	}
+	
+	
+	public int numDecodingsDpOpt(String s) {
+		if( s.charAt(0) == 48 )
+        	return 0;
+		
+		int n2  = 1;
+		int n1  = (s.charAt(s.length()-1) == 48) ? 0 : 1;
+		for( int i=s.length()-2;i>-1;i--) {
+			int n = 0;
+			if( s.charAt(i) != 48 )  {
+				n = n1 ;
+				if( s.charAt(i) == 49 || ( s.charAt(i) == 50 && s.charAt(i+1) < 55) ) {
+					n +=  n2;
+				}
+			}
+				n2 = n1;
+				n1 = n;
+	    }
+		
+		
+		return n1;
+    }
 	
 	public int numDecodingsDp(String s) {
 		if( s.charAt(0) == 48 )
