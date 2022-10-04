@@ -14,7 +14,7 @@ public class ShortestPath {
 		System.out.println( new ShortestPath().shortestPathUsingBacktracing(mat, 0, 0, new boolean[size][size], 0) );
 	}
 	
-	int[][] dir = {{1,0},{-1,0},{0,1},{0,-1},{1,1}};
+	int[][] dir = {{1,0},{-1,0},{0,1},{0,-1}};
 	
 	public int shortestPath( int[][] mat ) {
 		
