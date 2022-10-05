@@ -1,7 +1,9 @@
 package test.app.graph;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class NetworkDelayTime {
 
@@ -25,14 +27,62 @@ public class NetworkDelayTime {
 			map.get(times[i][0]).put(times[i][1], times[i][2]);
 		}
 		
+		// Applying Dijkstra's algo here to shortest path between src (k) and every other node.
+		int[] distance = new int[n+1];
+		Arrays.fill(distance, Integer.MAX_VALUE);
+		distance[k] = 0;
 		
-		boolean[] visited = new boolean[n+1];
-		visited[0] = true;
-		dfs(k, map, visited, 0 );
+		dijkstra(map,distance,n,k);
 		
-        return this.cost == Integer.MAX_VALUE ? -1 : this.cost;
+		int max = Integer.MIN_VALUE;
+		for( int i=1;i<distance.length;i++) {
+			if ( distance[i] == Integer.MAX_VALUE)
+				return -1;
+			
+			max = Math.max(max, distance[i]);
+		}
+		
+		return max;
     }
 	
+	
+	
+	private void dijkstra(Map<Integer,Map<Integer,Integer>> map, int[] distance, int n, int k) {
+		
+		boolean[] visited = new boolean[n+1];
+		
+		PriorityQueue<Node> q = new PriorityQueue<>((n1,n2)->n1.d-n2.d);
+		q.add(new Node(k, 0));
+		
+		while(!q.isEmpty()) {
+			Node v = q.remove();
+			int src = v.v;
+			
+			if( visited[src] )
+				continue;
+			
+			visited[src] = true;
+			for( Integer neighbour : map.get(src).keySet() ) {
+			     
+				 int cost = map.get(src).get(neighbour);
+			     if ( distance[neighbour] > ( cost + distance[src])) {
+			    	 distance[neighbour] = ( cost + distance[src]); 
+			    	 q.add(new Node(neighbour,distance[neighbour]));
+			     }
+			} 
+		}
+		
+	}
+	
+	static class Node{
+		int v , d;
+		
+		Node( int v, int d ){
+			this.v = v;
+			this.d = d;
+		}
+	}
+
 	public void dfs ( int n , Map<Integer,Map<Integer,Integer>> map , boolean[] visited , int cost ) {
 		
 		visited[n] = true;
