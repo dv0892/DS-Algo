@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 public class NetworkDelayTime {
 
 	public static void main(String[] args) {
-		
+		//GOOD QUESTION
 		int[][] times = {{2,1,1},{2,3,1},{3,4,1}};
 		int n = 4;
 		int k = 2;
