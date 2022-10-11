@@ -42,9 +42,10 @@ public class DeepestLeavesSum {
     		   } else if( d == key.intValue() )
     			   map.put(d, map.get(key) + root.val);
     	   }
-       } else
+       } else {
     	   deepestLeavesSumDFS(root.left, d+1);
        	   deepestLeavesSumDFS(root.right, d+1);
+       }
     	   
     }
 	
