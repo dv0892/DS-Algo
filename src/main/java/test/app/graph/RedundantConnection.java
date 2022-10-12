@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import test.app.utils.DisJointSet;
+
 public class RedundantConnection {
 
 	public static void main(String[] args) {
@@ -16,6 +18,24 @@ public class RedundantConnection {
 		System.out.println(Arrays.toString( new RedundantConnection().findRedundantConnection(edges))); 
 		
 	}
+	
+	
+	public int[] findRedundantConnectionDSU(int[][] edges) {
+        int[] ans = new int[2];
+        DisJointSet ds = new DisJointSet(1001);
+		
+        for( int[] edge : edges ){
+            int src  = edge[0];
+            int dest = edge[1];
+            
+            if( ds.find(src) == ds.find(dest) )
+                return edge;
+            
+            ds.union(src,dest);
+        }
+        
+        return ans;
+    }
 	
 	HashSet<Integer> seen = new HashSet<>();
 	
