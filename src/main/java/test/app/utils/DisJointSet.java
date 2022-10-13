@@ -1,5 +1,7 @@
 package test.app.utils;
 
+import java.util.Arrays;
+
 public class DisJointSet {
 
 	int[] parent ;
@@ -14,8 +16,18 @@ public class DisJointSet {
 		}
 	} 
 	
+	public DisJointSet(int n , boolean withoutMake) {
+		parent = new int[n] ;
+		size = new int[n];
+		Arrays.fill(size, -1);
+	}
+	
 	
 	public void make( int n ) {
+		
+		if( size[n] > 0 ) 
+			return ;
+		
 		parent[n] = n;
 		size[n] = 1;
 	}
@@ -33,7 +45,7 @@ public class DisJointSet {
 	
 	public int sets ( ) {
 		int count = 0;
-		for(int i=1;i<parent.length;i++) {
+		for(int i=0;i<parent.length;i++) {
 			if( i == parent[i] )
 				count++;
 		}
@@ -49,12 +61,16 @@ public class DisJointSet {
 		if( p1 != p2 ) {
 			if( size[p1] > size[p2] ) {
 				parent[p2] = p1;
-				size[p1] += parent[p2];
+				size[p1] += size[p2];
 			} else {
 				parent[p1] = p2;
-				size[p2] += parent[p1];
+				size[p2] += size[p1];
 			}
 		}
+	}
+	
+	public int size( int i ) {
+		return size[find(i)];
 	}
 	
 	public static void main( String[] args ) {
@@ -80,6 +96,5 @@ public class DisJointSet {
 		System.out.println( ds.find(3) );
 		System.out.println( ds.find(4) );
 	}
-	
 
 }
