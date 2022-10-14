@@ -23,7 +23,7 @@ public class MaxAreaOfIsland {
         int m = grid.length;
         int n = grid[0].length;
 
-        int[][] dir = { {1,0},{0,1},{-1,0},{0,-1} };
+        int[][] dir = { {1,0},{0,1}/*,{-1,0},{0,-1}*/ };
         DisJointSet ds = new DisJointSet(m*n,true);
         for (int r=0;r<m;r++) {
         	for( int c=0;c<n;c++) {

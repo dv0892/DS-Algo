@@ -25,6 +25,7 @@ public class DisJointSet {
 	
 	public void make( int n ) {
 		
+		//means it is already made
 		if( size[n] > 0 ) 
 			return ;
 		
