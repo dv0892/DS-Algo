@@ -3,7 +3,7 @@ package test.app.unionfind;
 public class NumberOfEnclaves {
 
 	public static void main(String[] args) {
-		int[][] grid = {{0,0,1,1,1,0,1,1,1,0,1},
+		/*int[][] grid = {{0,0,1,1,1,0,1,1,1,0,1},
 				{1,1,1,1,0,1,0,1,1,0,0},
 				{0,1,0,1,1,0,0,0,0,1,0},
 				{1,0,1,1,1,1,1,0,0,0,1},
@@ -12,12 +12,12 @@ public class NumberOfEnclaves {
 				{0,1,0,1,1,0,0,0,1,0,0},
 				{0,1,1,0,1,0,1,1,1,0,0},
 				{1,1,0,1,1,1,0,0,0,0,0},
-				{1,0,1,1,0,0,0,1,0,0,1}};
+				{1,0,1,1,0,0,0,1,0,0,1}};*/
 		
 		
-		/*int[][] grid = { {0,0,0,0,0,0,0},
+		int[][] grid = { {0,0,0,0,0,0,0},
 				 {0,1,1,1,1,1,1},
-				 {0,0,0,0,0,0,0} };*/
+				 {0,0,0,0,0,0,0} };
 		System.out.println( new NumberOfEnclaves().numEnclavesUsingDSU(grid));
 
 	}
