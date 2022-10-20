@@ -79,8 +79,8 @@ public class CountSubIslands {
             for (int j = 0; j < cols; j++) {
             	
             	// This will handle two cases :
-            	//1. When their is water in Grid2
-            	//2. When their is water is Grid1 , it will simply go and mark that corresponding cell of grid2( parent in DSU ) as blacklisted and reduce the component size by 1 if it doing it for first time
+            	//1. When there is water in Grid2
+            	//2. When there is water is Grid1 , it will simply go and mark that corresponding cell of grid2( parent in DSU ) as blacklisted and reduce the component size by 1 if it doing it for first time
                 if ( grid2[i][j] == 0 /*|| grid1[i][j] == 0*/) {
                     uf.blacklistComponent(index(i, j, cols));
                 } 
