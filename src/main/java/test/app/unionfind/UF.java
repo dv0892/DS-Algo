@@ -52,6 +52,10 @@ public class UF {
             components--;
         blacklist[a] = true;
     }
+    
+    public int size(int a) {
+        return sizes[a];
+    }
 }
 
 
