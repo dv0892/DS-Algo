@@ -38,8 +38,6 @@ public class NumberOfRestrictedPathsFromFirstToLastNode {
 	        // Graph Built
 	        
 	        // Now find the shortest distance distance of each node from n node using dijkstra's algo
-	        // as flyod-warshall will be overkill;
-	        
 	        int[] distanceToLastNode = dijkstralgo(graph, n );              
 	        
 	        
@@ -49,6 +47,7 @@ public class NumberOfRestrictedPathsFromFirstToLastNode {
 
 		private int bottomUpDP(int n, int[][] edges, Map<Integer, Map<Integer, Integer>> graph,
 				int[] distanceToLastNode) {
+			
 			int[] indegree = new int[n+1];
 		        for( int[]  edge : edges ){
 		            int s = edge[0];
