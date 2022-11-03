@@ -37,21 +37,29 @@ public class ThreeBlockLettersCodility {
         while( i >= 0 ) {
         	char ch = S.charAt(i);
         	
+        	// Consider this char in block of size 2, then 1 and 0.
         	for(int k = 2 ; k >=0 ;k-- ) {
         		
-        		int maxSame = 0, maxDiff = 0;
-        		
+        		//int maxSame = 0, maxDiff = 0;
         		for( int j=i+1; j<n; j++ ) {
         			if( ch == S.charAt(j) ) {
-        				maxSame = Math.max(maxSame,1 + dp[j][k] );
-        				if( maxDiff > 0 )
+        				//maxSame = Math.max(maxSame,1 + dp[j][k] );
+        				dp[i][k] = Math.max(dp[i][k], 1 + dp[j][k]) ;
+        				// This is an additional check to pass the big performance test-cases -\
+        				/* once we have found the same char  
+        				 * then we don't need to further check similar chars found in the string.
+        				 * And also Diff char was found before that , we can safely terminate this loop.
+        				 * As either of them would be the answer, no latter found chars would form the a bigger answer.
+        				*/
+        				/*if( maxDiff > 0 )*/
         					break;
         			} else {
-        				maxDiff = Math.max(maxDiff,1 + dp[j][k+1] ); 
+        				//maxDiff = Math.max(maxDiff,1 + dp[j][k+1] ); 
+        				dp[i][k] = Math.max(dp[i][k], 1 + dp[j][k+1]) ;
         		    }
         		}
         		
-        		dp[i][k] = Math.max(maxSame, maxDiff) ;
+        		//dp[i][k] = Math.max(maxSame, maxDiff) ;
         		len = Math.max(len , dp[i][k] );
         	}
         	
