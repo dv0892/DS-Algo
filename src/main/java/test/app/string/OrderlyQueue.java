@@ -11,6 +11,25 @@ public class OrderlyQueue {
 		//imvxz
 	}
 	
+	public String orderlyQueueClean(String s, int k) { 
+		// For k > 1 , it is just forming the decision tree of sorting algorithms .
+		if( k > 1 ) {
+			char[] res = s.toCharArray();
+			Arrays.sort(res);
+			return new String(res);
+		}
+		
+		String ss = s;
+		for( int i=1; i<s.length();i++) {
+			String rot = s.substring(i) + s.substring(0,i);
+			if( ss.compareTo(rot) > 0 ) {
+				ss = rot;
+			}
+		}
+		
+		
+		return ss;
+	}
 	
 	public String orderlyQueue(String s, int k) {
         
