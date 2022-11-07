@@ -8,14 +8,22 @@ public class FloydWarshall {
 	
 	public static void main(String[] args) {
 		
-		int[][] graph = { {0,3,8,INF,-4},
+		/*int[][] graph = { {0,3,8,INF,-4},
 						  {INF,0,INF,1,7},
 						  {INF,4,0,INF,INF},
 						  {2,INF,-5,0,INF},
 						  {INF,INF,INF,6,0},
+						};*/
+		
+		int[][] graph = { {0,1,INF,INF,INF,INF},
+						  {1,0,1,INF,INF,INF},
+						  {INF,1,0,1,INF,INF},
+						  {INF,INF,1,0,1,INF},
+						  {INF,INF,INF,1,0,1},
+						  {INF,INF,INF,INF,1,0}
 						};
 		
-		new FloydWarshall().allPairShortestPath(graph, 5);
+		new FloydWarshall().allPairShortestPath(graph, 6);
 		
 		for( int[] g : graph )
 			System.out.println( Arrays.toString(g));
