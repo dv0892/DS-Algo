@@ -45,10 +45,15 @@ public class LastStoneWeightII {
 			}
 		}
 		
-		
+		System.out.println(S);
 		System.out.println(S/2);
-		for(int[] a : dp )
-			System.out.println(Arrays.toString(a));
+		
+		for( int s = 1; s<=n ; s++ ) {
+			for( int sum=1;sum<=S/2;sum++) {
+				System.out.print(sum + "-" + dp[s][sum]  +"  ");
+			}
+			System.out.println( );
+		}
 		
 		return  S - 2*dp[n][S/2];
     }
