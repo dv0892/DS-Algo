@@ -1,5 +1,7 @@
 package test.app.graph;
 
+import test.app.tree.TreeNode;
+
 public class LowestCommonAncestorOfABinaryTree {
 
 	public static void main(String[] args) {
