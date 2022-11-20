@@ -41,12 +41,13 @@ public class BasicCalculator {
     		   
     		   processStack( Integer.valueOf(val), stack);
     	   } else {
-    		   int h=i;
+    		   int num = 0;
     		   while(i<s.length() && Character.isDigit(s.charAt(i))) {
+    			   num = (num * 10) + (s.charAt(i)-'0');
     			   i++;
     		   }
     		   
-    		   processStack( Integer.valueOf(s.substring(h,i)), stack);
+    		   processStack( num, stack);
     		   i--;
     	   }
        }

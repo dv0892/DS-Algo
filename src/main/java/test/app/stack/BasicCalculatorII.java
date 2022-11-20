@@ -6,11 +6,10 @@ public class BasicCalculatorII {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println( new BasicCalculatorII().calculate("3+2*2") );
+		System.out.println( new BasicCalculatorII().calculate("12-3*4") );
 	}
 	
 	public int calculate(String s) {
-        
 		return Integer.valueOf( processStackCleaned (  processStackCleaned(s, '*' ,'/',0 ) ,'+','-',0 ) .trim() );
     }
 
@@ -34,38 +33,36 @@ public class BasicCalculatorII {
 			if( index == -1 )
 				return s;
 			
+			if ( fromIndex == index )
+				return processStackCleaned(s,op1,op2,index+1);
+			
 	        int r=index+1;
 	        // accumulate right digits
 	        while( r<s.length() && ( s.charAt(r)==' ' || Character.isDigit(s.charAt(r)) ) ){
 	        	r++;
 	        }
-	        
-	        // left operand -ive
-	        if( s.charAt(left) != '-' ) {
-	        	left++;
-	        }
-	        
-	        String leftOperand = s.substring(left, index).replace(" ", "");
 	        String rightOperand = s.substring(index+1,r).replace(" ", "");
 	        
-	        if( leftOperand.isEmpty() || rightOperand.isEmpty() ) {
-	        	return processStack (s,op1,op2,index+1);
-	        }
-	        
+	        // left operand not negative -ive        
+	        if( s.charAt(left) == '+' || s.charAt(left) == '*' || s.charAt(left) == '/'  ) {
+	    		left++;
+	    	} else if(Character.isDigit(s.charAt(left)) && (left-1)>=0 && s.charAt(left-1)=='-') {
+	    		left--;
+	    		fromIndex = Math.min(left, fromIndex);
+	    	}
+	        String leftOperand  = s.substring(left, index).replace(" ", "");
+	      
 	        int res = resolve( Integer.valueOf(leftOperand) , Integer.valueOf(rightOperand) , op );
-	        String resolved = "";
-	        if ( (left-fromIndex)>0 )
-	        	resolved = s.substring(fromIndex,left)  ;
 	        
-	        if( s.charAt(left) == '-' && res >= 0) {
+	        String resolved = s.substring(fromIndex, left)  ;
+	        
+	        if( s.charAt(left)=='-' && resolved.length()>0 && res>=0) {
 	        	resolved += "+";
 	        }
 	        
-	            resolved += String.valueOf(res); 
+	        resolved += String.valueOf(res); 
+	        resolved += s.substring(r) ; 
 	        
-	        if( r<s.length() ) {
-	        	resolved += s.substring(r) ; 
-	        }
 	       
 	        return processStackCleaned(resolved, op1,op2,fromIndex);
 	}
