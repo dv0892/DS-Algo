@@ -45,6 +45,7 @@ public class MaximumProfitInJobScheduling {
 	   int[] dp = new int[jobs.length];
 	   Arrays.sort(jobs,(j1,j2) -> Integer.compare(j1[0], j2[0]) );
 	   int res = Integer.MIN_VALUE;
+	   
 	   for( int i=jobs.length-1;i>=0;i--) {
 		   int[] currjob = jobs[i];
 		   int max = currjob[2];
