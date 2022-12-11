@@ -1,12 +1,17 @@
 package test.app.math;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import test.app.utils.Utils;
 
 public class MinimumAverageDifference {
 
+	int MOD = (int)(1e9+7);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println( new MinimumAverageDifference().minimumAverageDifference(Utils.readLeetInput1("leetinput")));
+		ExecutorService ex;
 	}
 	
     public int minimumAverageDifference(int[] nums) {
