@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class BestTimeToBuyAndSellStockWithCooldown {
 
 	public static void main(String[] args) {
-		System.out.println( new BestTimeToBuyAndSellStockWithCooldown().maxProfit(new int[]{1,3,1,1,3}));
+		System.out.println( new BestTimeToBuyAndSellStockWithCooldown().maxProfit(new int[]{7,5,4,1,3}));
 	}
 
 	
@@ -19,8 +19,30 @@ public class BestTimeToBuyAndSellStockWithCooldown {
         System.out.println( Arrays.toString(dp[0]));
         System.out.println( Arrays.toString(dp[1]));
         
-        return ans ;
+        return maxProfitBottomsUp(prices) ;
     }
+	
+	public int maxProfitBottomsUp(int[] prices) {
+        
+		int n = prices.length;
+		int[][] dp = new int[2][n+2];
+		int max = Integer.MIN_VALUE;
+		
+		for( int i=n-1;i>=0;i--) {
+			// if i is being bought 
+			dp[1][i] = Math.max( -prices[i] + dp[0][i+1], dp[1][i+1] );
+			
+			// if i is being sold
+			dp[0][i] = Math.max( prices[i] + dp[1][i+2], dp[0][i+1] );
+			
+			
+		}
+
+		 System.out.println( Arrays.toString(dp[0]));
+	     System.out.println( Arrays.toString(dp[1]));
+		
+		return dp[1][0];
+	}
 	
 	public int maxProfit(int i , int buy , int[] prices, int[][] dp) {
         if( i >= prices.length )
