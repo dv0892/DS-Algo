@@ -3,11 +3,17 @@ package test.app.string;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class FindAllAnagramsInAString {
 
 	public static void main(String[] args) {
 		System.out.println( new FindAllAnagramsInAString().findAnagrams("baa","aa"));
+		Stream<String> st = Stream.of("Dinesh","Verma");
+		Function<String,Integer> func = (String s) -> s.length();
+		//st.forEach(s -> System.out.println(s) );
+		st.map((String s) -> s.charAt(0)).forEach(s -> System.out.println(s)); ;
 
 	}
 	
