@@ -40,6 +40,34 @@ public class FindFirstMissingNumber {
 
         return missing;
     }
+	
+	public int solutionNew(int[] A) {
+        // Implement your solution here
+        Arrays.sort(A);
+        int n = A.length;
+        int missing = -1;
+        for( int i=0;i<n;i++){
+            if( A[i] <= 0 )
+                continue;
+
+            if( (i-1)>=0){
+                if( A[i-1] <= 0 ){
+                    if( A[i] > 1 ) {
+                        missing = 1; 
+                        break; 
+                    }
+                } else if( (A[i] - A[i-1]) > 1){
+                    missing = A[i-1]+1;
+                    break;
+                }
+            } else if( A[i] > 1 ) {
+            	missing = 1;
+            	break;
+            }
+        }
+
+        return missing > 0 ? missing : ( A[n-1] <= 0 ? 1 : (A[n-1]+1) ); 
+    }
 
 }
 
