@@ -16,7 +16,7 @@ public class NamingACompany {
 	
 	public int solution(int[] A) {
         // Implement your solution here
-        Arrays.sort(A, (i1,i2) -> Integer.compare(i1,i2));
+        Arrays.sort(A);
 
         int missing = -1;
         for( int i=0;i<A.length;i++){
