@@ -14,6 +14,7 @@ public class BuildingH2O {
 		String water = "HHHHOO";
 		ExecutorService service = Executors.newFixedThreadPool(water.length());
 		
+		
 		Runnable releaseHydrogen = () -> System.out.print("H");
 		Runnable releaseOxygen   = () -> System.out.print("O");
 		
