@@ -29,5 +29,26 @@ public class BestTimeToBuyAandSellStockII {
         maxProfit += profit;
         return maxProfit;
     }
+	
+	
+	// ADDED ON 25-02-2023
+	public int maxProfitSimplified(int[] prices) {
+	        int maxProfit=0, profit=0, buyPrice = prices[0],sellPrice = prices[0];
+	        
+	        for( int price : prices ){
+
+	            if( price > sellPrice ){
+	                sellPrice = price;
+	                profit = sellPrice-buyPrice;
+	            } else {
+	                maxProfit += profit;
+	                profit=0; buyPrice = sellPrice = price ;
+	            }
+	        }
+	        
+	        maxProfit += profit;
+	        return maxProfit;
+	}
+	
 
 }

@@ -68,6 +68,25 @@ public class FindFirstMissingNumber {
 
         return missing > 0 ? missing : ( A[n-1] <= 0 ? 1 : (A[n-1]+1) ); 
     }
+	
+	
+	public int solutionNewNew(int[] A) {
+        // Implement your solution here
+        Arrays.sort(A);
+        int n = A.length;
+        int missing = 0;
+        for( int i=0;i<n;i++){
+            if( A[i] <= 0 )
+                continue;
+
+            if( A[i] >= missing && (A[i]-missing) <= 1 ) {
+            	missing = Math.max(missing, A[i]);
+            } else
+            	return missing+1;
+        }
+
+        return missing+1;
+    }
 
 }
 
